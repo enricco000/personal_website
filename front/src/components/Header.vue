@@ -171,7 +171,11 @@ export default {
         { title: 'Home', icon: 'mdi-duck', showOnLogin: false, hideOnLogin: false, to: '/', show: true },
         // { title: 'Tienda', icon: 'mdi-storefront', showOnLogin: false, hideOnLogin: false, to: '/shop', show: true },
         { title: 'Crear Cuenta', icon: 'mdi-account-plus', showOnLogin: false, hideOnLogin: true, to: '/register', show: true },
-        { title: 'Iniciar Sesión', icon: 'mdi-login', showOnLogin: false, hideOnLogin: true, to: '/login', show: true }
+        { title: 'Iniciar Sesión', icon: 'mdi-login', showOnLogin: false, hideOnLogin: true, to: '/login', show: true },
+        { title: 'Matemáticas', icon: 'mdi-pi', showOnLogin: false, hideOnLogin: false, to: '/math', show: true },
+        { title: 'Ciencia de Datos', icon: 'mdi-iframe-variable-outline', showOnLogin: false, hideOnLogin: false, to: '/ds', show: true },
+        { title: 'Desarrollo', icon: 'mdi-code-braces', showOnLogin: false, hideOnLogin: false, to: '/dev', show: true },
+        { title: 'Bio', icon: 'mdi-microscope', showOnLogin: false, hideOnLogin: false, to: '/bio', show: true }
       ],
       bottomItems: [
         { title: 'Marcadores', icon: 'mdi-bookmark-multiple', action: this.navigateToMarkers },

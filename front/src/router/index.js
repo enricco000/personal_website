@@ -13,6 +13,26 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
+    path: '/math',
+    name: 'Math',
+    component: () => import('../views/Math.vue')
+  },
+  {
+    path: '/ds',
+    name: 'DataScience',
+    component: () => import('../views/DataScience.vue')
+  },
+  {
+    path: '/dev',
+    name: 'Dev',
+    component: () => import('../views/Dev.vue')
+  },
+  {
+    path: '/bio',
+    name: 'Bio',
+    component: () => import('../views/Bio.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue')

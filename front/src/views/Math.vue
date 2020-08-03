@@ -8,7 +8,7 @@
 import TextContainer from '@/components/TextContainer.vue'
 
 export default {
-  name: 'Home',
+  name: 'Math',
   components: {
     TextContainer
   }
