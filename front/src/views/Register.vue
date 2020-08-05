@@ -87,7 +87,7 @@
           <v-btn
           :disabled="!passwordsMatch || error !== null"
           @click="register()"
-          color="tertiary"
+          color="secondary"
           class="white--text"
           >
             Crear cuenta

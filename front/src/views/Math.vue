@@ -1,16 +1,31 @@
 <template>
-  <div class="home">
-    <text-container />
-  </div>
+  <v-container>
+  <v-row
+  class="justify-center">
+    <v-col
+    class="text-left"
+    cols="12"
+    style="max-width: 720px;"
+    >
+      <markdown-it-vue class="md-body" :content="content" />
+    </v-col>
+  </v-row>
+  </v-container>
 </template>
 
 <script>
-import TextContainer from '@/components/TextContainer.vue'
+import MarkdownItVue from 'markdown-it-vue'
+import 'markdown-it-vue/dist/markdown-it-vue.css'
+import Foo from '@/components/Foo.md'
 
 export default {
-  name: 'Math',
   components: {
-    TextContainer
+    MarkdownItVue
+  },
+  data () {
+    return {
+      content: Foo
+    }
   }
 }
 </script>
