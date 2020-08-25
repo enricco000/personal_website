@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store/index'
 
 Vue.use(VueRouter)
 
@@ -35,7 +36,15 @@ const routes = [
   {
     path: '/createcontent',
     name: 'CreateContent',
-    component: () => import('../views/CreateContent.vue')
+    component: () => import('../views/CreateContent.vue'),
+    meta: {
+      requiresAdmin: true
+    }
+  },
+  {
+    path: '/article/:articleId',
+    name: 'Article',
+    component: () => import('../views/Article.vue')
   },
   {
     path: '/login',
@@ -53,6 +62,20 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.state.isAdmin) {
+      next({
+        path: '/login'
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router

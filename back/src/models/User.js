@@ -5,7 +5,11 @@ async function hashPassword (user) {
   if (!user.changed('password')) {
     return
   }
-  user.password = await bcrypt.hash(user.password, SALT_ROUNDS)
+  try {
+    user.password = await bcrypt.hash(user.password, SALT_ROUNDS)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 module.exports = (sequelize, DataTypes) => {

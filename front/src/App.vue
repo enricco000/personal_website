@@ -2,17 +2,18 @@
   <div id="app">
     <v-app>
 
-      <v-container>
-        <page-header></page-header>
+      <v-container
+      class="pb-5">
+        <page-header />
       </v-container>
 
       <v-container
       class="pt-5 pb-16">
-        <router-view></router-view>
+        <router-view />
       </v-container>
 
       <v-container>
-        <page-footer></page-footer>
+        <page-footer />
       </v-container>
 
     </v-app>

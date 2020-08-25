@@ -113,38 +113,26 @@ The width and height is the size for chart container.
 
 ```echarts
 {
-  "width": 500,
-  "height": 400,
-  "series": [
-    {
-      "name": "访问来源",
-      "type": "pie",
-      "radius": "55%",
-      "data": [
-        {
-          "value": 235,
-          "name": "视频广告"
-        },
-        {
-          "value": 274,
-          "name": "联盟广告"
-        },
-        {
-          "value": 310,
-          "name": "邮件营销"
-        },
-        {
-          "value": 335,
-          "name": "直接访问"
-        },
-        {
-          "value": 400,
-          "name": "搜索引擎"
-        }
-      ]
+    "chartist":{
+        "data":{
+            "labels": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "series": [
+                [12, 9, 7, 8, 5],
+                [2, 1, 3.5, 7, 3],
+                [1, 3, 4, 5, 6]
+            ]
+        }, 
+        "options":{
+            "fullWidth": true,
+            "chartPadding": {
+            "right": 40
+            }
     }
-  ]
 }
+```
+
+```echarts
+
 ```
 
 ## code
@@ -158,7 +146,7 @@ npm install markdown-it-vue
 | First Header  | Second Header |
 | ------------- | ------------- |
 | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| Content Cell  | ![img](/favicon.ico)  |
 
 ## flowchart.js
 

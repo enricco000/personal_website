@@ -10,20 +10,91 @@
     <v-app-bar-nav-icon
     dark
     @click="drawer = true; loginHide(); loginShow();"
-    v-if="mobileNav === false"
     >
     </v-app-bar-nav-icon>
 
     <v-toolbar-title>
-      <v-btn
-      dark
-      icon
-      exact
-      to="/">
-        <v-icon>
-          mdi-duck
-        </v-icon>
-      </v-btn>
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+            dark
+            icon
+            exact
+            v-bind="attrs"
+            v-on="on"
+            to="/"
+            >
+              <v-icon>mdi-duck</v-icon>
+            </v-btn>
+          </template>
+            <span>Inicio</span>
+        </v-tooltip>
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+            dark
+            icon
+            exact
+            v-bind="attrs"
+            v-on="on"
+            to="/bio"
+            >
+              <v-icon>mdi-microscope</v-icon>
+            </v-btn>
+          </template>
+            <span>Bioquímica y Biofísica</span>
+        </v-tooltip>
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+            dark
+            icon
+            exact
+            v-bind="attrs"
+            v-on="on"
+            to="/ds"
+            >
+              <v-icon>mdi-iframe-variable-outline</v-icon>
+            </v-btn>
+          </template>
+            <span>Ciencia de Datos</span>
+        </v-tooltip>
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+            dark
+            icon
+            exact
+            v-bind="attrs"
+            v-on="on"
+            to="/dev"
+            >
+              <v-icon>mdi-code-braces</v-icon>
+            </v-btn>
+          </template>
+            <span>Desarrollo</span>
+        </v-tooltip>
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+            dark
+            icon
+            exact
+            v-bind="attrs"
+            v-on="on"
+            to="/math"
+            >
+              <v-icon>mdi-pi</v-icon>
+            </v-btn>
+          </template>
+            <span>Matemáticas</span>
+        </v-tooltip>
+
     </v-toolbar-title>
 
     <v-spacer></v-spacer>
@@ -42,23 +113,14 @@
           </v-icon>
         </v-text-field>
 
-    <v-btn
-    icon
-    v-if="mobileNav"
-    @click="drawer = true; loginHide(); loginShow();">
-      <v-icon>
-        mdi-menu
-      </v-icon>
-    </v-btn>
-
   </v-app-bar>
 
     <v-navigation-drawer
         v-model="drawer"
+        absolute
         temporary
         dark
         :mini-variant="mobileNav"
-        :right="mobileNav"
         color="tertiary"
         app
     >
@@ -171,11 +233,7 @@ export default {
         { title: 'Home', icon: 'mdi-duck', showOnLogin: false, hideOnLogin: false, to: '/', show: true },
         // { title: 'Tienda', icon: 'mdi-storefront', showOnLogin: false, hideOnLogin: false, to: '/shop', show: true },
         { title: 'Crear Cuenta', icon: 'mdi-account-plus', showOnLogin: false, hideOnLogin: true, to: '/register', show: true },
-        { title: 'Iniciar Sesión', icon: 'mdi-login', showOnLogin: false, hideOnLogin: true, to: '/login', show: true },
-        { title: 'Matemáticas', icon: 'mdi-pi', showOnLogin: false, hideOnLogin: false, to: '/math', show: true },
-        { title: 'Ciencia de Datos', icon: 'mdi-iframe-variable-outline', showOnLogin: false, hideOnLogin: false, to: '/ds', show: true },
-        { title: 'Desarrollo', icon: 'mdi-code-braces', showOnLogin: false, hideOnLogin: false, to: '/dev', show: true },
-        { title: 'Bio', icon: 'mdi-microscope', showOnLogin: false, hideOnLogin: false, to: '/bio', show: true }
+        { title: 'Iniciar Sesión', icon: 'mdi-login', showOnLogin: false, hideOnLogin: true, to: '/login', show: true }
       ],
       bottomItems: [
         { title: 'Marcadores', icon: 'mdi-bookmark-multiple', action: this.navigateToMarkers },
