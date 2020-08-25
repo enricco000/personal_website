@@ -13,6 +13,6 @@ module.exports = {
     }
   },
   authentication: {
-    jwtSecret: process.env.JWT_SECRET || 'pN9TYsz95cLkncEP'
+    jwtSecret: process.env.JWT_SECRET || 'X4N5yxttjya3wEfX'
   }
 }
