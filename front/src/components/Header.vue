@@ -117,7 +117,6 @@
 
     <v-navigation-drawer
         v-model="drawer"
-        absolute
         temporary
         dark
         :mini-variant="mobileNav"
@@ -232,8 +231,8 @@ export default {
       topItems: [
         { title: 'Home', icon: 'mdi-duck', showOnLogin: false, hideOnLogin: false, to: '/', show: true },
         // { title: 'Tienda', icon: 'mdi-storefront', showOnLogin: false, hideOnLogin: false, to: '/shop', show: true },
-        { title: 'Sign up', icon: 'mdi-account-plus', showOnLogin: false, hideOnLogin: true, to: '/register', show: true },
-        { title: 'Sign in', icon: 'mdi-login', showOnLogin: false, hideOnLogin: true, to: '/login', show: true }
+        { title: 'Sign up', icon: 'mdi-account-plus', showOnLogin: false, hideOnLogin: true, to: '/signup', show: true },
+        { title: 'Sign in', icon: 'mdi-login', showOnLogin: false, hideOnLogin: true, to: '/signin', show: true }
       ],
       bottomItems: [
         { title: 'Bookmarks', icon: 'mdi-bookmark-multiple', action: this.navigateToMarkers },

@@ -10,7 +10,7 @@ module.exports = {
         entries = await Entry.findAll({
           where: {
             [Op.or]: [
-              'title', 'author', 'content'
+              'title', 'author', 'content', 'summary'
             ].map(key => ({
               [key]: {
                 [Op.like]: `%${search}%`
