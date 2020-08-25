@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize) => {
   const Bookmark = sequelize.define('Bookmark', {})
 
   Bookmark.associate = function (models) {
