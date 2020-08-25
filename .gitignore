@@ -3,3 +3,4 @@ back/node_modules/
 back/seed/
 back/src/config/
 .htaccess
+personal_site_db_sqlite
