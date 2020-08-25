@@ -265,7 +265,7 @@ export default {
         this.drawer = false
         this.$store.dispatch('logout')
         this.snackbarRules.snackbar = true
-        setTimeout(() => this.navigateTo('content'), 1250)
+        setTimeout(() => this.navigateTo('content'), 200)
         this.topItems
           .filter(u => { return u.hideOnLogin === true })
           .map(u => { u.show = true })

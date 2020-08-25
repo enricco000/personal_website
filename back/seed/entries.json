@@ -1,11 +1,10 @@
 [
     {
-        "title": "Bienvenido a El Rubber Ducky",
-        "subTitle": "Un Blog Colaborativo Interesante e Inútil",
-        "author": "elrubberducky",
-        "content": "Contenido",
-        "topics": "Bienvenida",
-        "image": "https://cdn.pixabay.com/photo/2020/06/11/15/55/pool-5287241_960_720.jpg",
-        "youtubeId": "Mh85R-S-dh8"
+        "title": "Sample Title",
+        "subTitle": "A Spectacular Subtitle",
+        "summary": "We need a description so the users know what they're gonna read",
+        "author": "Owner",
+        "content": "# Github Style Content",
+        "topics": "topic1, topic2, topic3"
     }
 ]

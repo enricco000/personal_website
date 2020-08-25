@@ -12,7 +12,8 @@
         <router-view />
       </v-container>
 
-      <v-container>
+      <v-container
+      class="pt-5">
         <page-footer />
       </v-container>
 
