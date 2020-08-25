@@ -3,13 +3,13 @@
     <card-slot>
 
       <div slot="CardTitle">
-        Crear Cuenta
+        Sign up
       </div>
 
       <div slot="CardText">
         <v-form>
           <v-text-field
-          label="Nombre de usuario*"
+          label="Username*"
           name="username"
           text="username"
           :rules="[rules.required]"
@@ -21,7 +21,7 @@
           </v-text-field>
 
           <v-text-field
-          label="Correo electrónico*"
+          label="Email*"
           name="email"
           text="email"
           :rules="[rules.required]"
@@ -34,7 +34,7 @@
 
           <v-text-field
           v-model="password"
-          label="Contraseña*"
+          label="Password*"
           name="password"
           :type="show1 ? 'text' : 'password'"
           :rules="[rules.required, rules.min]"
@@ -46,7 +46,7 @@
           <v-text-field
           v-if="password"
           v-model="reTypePassword"
-          label="Repite la contraseña*"
+          label="Retype password*"
           name="password"
           :type="show2 ? 'text' : 'password'"
           :rules="[rules.matchingPasswords, rules.min]"
@@ -90,7 +90,7 @@
           color="secondary"
           class="white--text"
           >
-            Crear cuenta
+            Create Account
           </v-btn>
         </v-row>
       </v-card-actions>
@@ -116,13 +116,13 @@ export default {
       show2: false,
       error: null,
       rules: {
-        required: value => !!value || 'Requerido',
-        min: value => value.length >= 8 || 'Mínimo: 8 caracteres alfanuméricos',
-        matchingPasswords: value => value === this.password || 'Las contraseñas no coinciden'
+        required: value => !!value || 'Required',
+        min: value => value.length >= 8 || 'Must be at least 8 alphanumeric characters',
+        matchingPasswords: value => value === this.password || 'Passwords do not match'
       },
       snackbarRules: {
         snackbar: false,
-        text: '¡Registro exitoso!',
+        text: 'Succes!',
         timeout: 1000
       }
     }

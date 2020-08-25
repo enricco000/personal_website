@@ -4,14 +4,14 @@
     <card-slot>
 
       <div slot="CardTitle">
-        Iniciar Sesión
+        Sign in
       </div>
 
       <div slot="CardText">
         <v-form>
           <v-text-field
           v-model="username"
-          label="Nombre de usuario*"
+          label="Username*"
           name="username"
           text="username"
           :rules="[rules.required]"
@@ -20,7 +20,7 @@
 
           <v-text-field
             v-model="password"
-            label="Contraseña*"
+            label="Password*"
             name="password"
             :type="show ? 'text' : 'password'"
             :rules="[rules.required]"
@@ -65,7 +65,7 @@
           color="secondary"
           class="white--text"
           >
-            Iniciar Sesión
+            Sign in
           </v-btn>
         </v-row>
       </v-card-actions>
@@ -88,11 +88,11 @@ export default {
       show: false,
       error: null,
       rules: {
-        required: value => !!value || 'Requerido'
+        required: value => !!value || 'Required'
       },
       snackbarRules: {
         snackbar: false,
-        text: '¡Inicio de sesión exitoso!',
+        text: 'Correctly signed in!',
         timeout: 1000
       }
     }

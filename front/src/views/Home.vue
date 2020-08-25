@@ -13,7 +13,7 @@
             <v-toolbar-title>
                 <h2
                 class="ml-2 mt-2">
-                  Entradas
+                  Entries
                 </h2>
             </v-toolbar-title>
             <template v-slot:extension
@@ -34,7 +34,7 @@
                     <v-icon>mdi-pen-plus</v-icon>
                   </v-btn>
                   </template>
-                  <span>Crear nueva entrada</span>
+                  <span>Create entry</span>
                 </v-tooltip>
             </template>
           </v-toolbar>
@@ -61,7 +61,7 @@
                   </v-icon>
                 </v-btn>
                   </template>
-                  <span>Eliminar marcador</span>
+                  <span>Remove bookmark</span>
                 </v-tooltip>
               </v-row>
 
@@ -81,7 +81,7 @@
                   </v-icon>
                 </v-btn>
                   </template>
-                  <span>Marcar esta entrada</span>
+                  <span>Bookmark this entry</span>
                 </v-tooltip>
               </v-row>
 
@@ -150,7 +150,7 @@
                                 </v-icon>
                               </v-btn>
                         </template>
-                        <span>Ir a la entrada</span>
+                        <span>Read entry</span>
                       </v-tooltip>
                     </v-row>
                   </v-col>

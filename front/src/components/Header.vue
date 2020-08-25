@@ -28,7 +28,7 @@
               <v-icon>mdi-duck</v-icon>
             </v-btn>
           </template>
-            <span>Inicio</span>
+            <span>Home</span>
         </v-tooltip>
 
         <v-tooltip bottom>
@@ -44,7 +44,7 @@
               <v-icon>mdi-microscope</v-icon>
             </v-btn>
           </template>
-            <span>Bioquímica y Biofísica</span>
+            <span>Biochemistry & Biophysics</span>
         </v-tooltip>
 
         <v-tooltip bottom>
@@ -60,7 +60,7 @@
               <v-icon>mdi-iframe-variable-outline</v-icon>
             </v-btn>
           </template>
-            <span>Ciencia de Datos</span>
+            <span>Data Science</span>
         </v-tooltip>
 
         <v-tooltip bottom>
@@ -76,7 +76,7 @@
               <v-icon>mdi-code-braces</v-icon>
             </v-btn>
           </template>
-            <span>Desarrollo</span>
+            <span>Development</span>
         </v-tooltip>
 
         <v-tooltip bottom>
@@ -92,7 +92,7 @@
               <v-icon>mdi-pi</v-icon>
             </v-btn>
           </template>
-            <span>Matemáticas</span>
+            <span>Math</span>
         </v-tooltip>
 
     </v-toolbar-title>
@@ -105,7 +105,7 @@
         v-model="search"
         single-line
         solo
-        label="Título o contenido"
+        label="Title or Content"
         class="shrink"
         >
           <v-icon slot="append">
@@ -215,7 +215,7 @@
           color="blue"
           text
           @click="snackbarRules.snackbar = false">
-          Cerrar
+          Close
         </v-btn>
       </v-snackbar>
 
@@ -232,13 +232,13 @@ export default {
       topItems: [
         { title: 'Home', icon: 'mdi-duck', showOnLogin: false, hideOnLogin: false, to: '/', show: true },
         // { title: 'Tienda', icon: 'mdi-storefront', showOnLogin: false, hideOnLogin: false, to: '/shop', show: true },
-        { title: 'Crear Cuenta', icon: 'mdi-account-plus', showOnLogin: false, hideOnLogin: true, to: '/register', show: true },
-        { title: 'Iniciar Sesión', icon: 'mdi-login', showOnLogin: false, hideOnLogin: true, to: '/login', show: true }
+        { title: 'Sign up', icon: 'mdi-account-plus', showOnLogin: false, hideOnLogin: true, to: '/register', show: true },
+        { title: 'Sign in', icon: 'mdi-login', showOnLogin: false, hideOnLogin: true, to: '/login', show: true }
       ],
       bottomItems: [
-        { title: 'Marcadores', icon: 'mdi-bookmark-multiple', action: this.navigateToMarkers },
+        { title: 'Bookmarks', icon: 'mdi-bookmark-multiple', action: this.navigateToMarkers },
         // { title: 'Ajustes', icon: 'mdi-cog', action: this.navigateToSettings },
-        { title: 'Cerrar Sesión', icon: 'mdi-logout', action: this.logout }
+        { title: 'Log out', icon: 'mdi-logout', action: this.logout }
       ],
       snackbarRules: {
         snackbar: false,
