@@ -16,6 +16,9 @@ module.exports = (app) => {
   app.get('/entries',
     EntriesController.index)
 
+  app.get('/entries/count',
+    EntriesController.count)
+
   app.post('/entries',
     isAuthenticated,
     EntriesControllerPolicy.post,

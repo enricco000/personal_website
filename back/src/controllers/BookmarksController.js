@@ -42,8 +42,9 @@ module.exports = {
         UserId: UserId,
         EntryId: EntryId
       })
-      res.send(created)
+      res.send({ bookmark: created.EntryId })
     } catch (err) {
+      console.log(err)
       res.status(500).send({
         error: 'An error has occured while creating the bookmark'
       })

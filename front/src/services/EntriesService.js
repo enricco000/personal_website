@@ -1,8 +1,16 @@
 import Api from '@/services/Api'
 
 export default {
-  index (search) {
+  index (search, page) {
     return Api().get('/entries', {
+      params: {
+        search: search,
+        page: page
+      }
+    })
+  },
+  count (search) {
+    return Api().get('/entries/count', {
       params: {
         search: search
       }

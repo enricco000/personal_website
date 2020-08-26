@@ -162,9 +162,11 @@
 
         <div class="text-center pb-3">
           <v-pagination
+          v-if="numEntries > 10"
           color="secondary"
            v-model="page"
-          :length="5"
+           @input="nextPage"
+          :length="Math.ceil(numEntries / 10)"
           >
           </v-pagination>
         </div>
@@ -189,7 +191,8 @@ export default {
     return {
       error: null,
       entries: null,
-      starredEntries: null,
+      search: null,
+      numEntries: null,
       page: 1
     }
   },
@@ -202,15 +205,10 @@ export default {
     '$route.query.search': {
       immediate: true,
       async handler (value) {
-        this.entries = (await EntriesService.index(value)).data
-        if (this.$store.state.isUserLoggedin) {
-          this.entries.forEach(async entry => {
-          // this.$set is the only way to add a new reactive property
-            this.$set(entry, 'bookmarked', (await BookmarksService.index({
-              entryId: entry.id
-            })).data)
-          })
-        }
+        // we store the value so we can use it with the pagination
+        this.search = value
+        this.countEntries(value)
+        this.fetchEntries(value, 1)
       }
     }
   },
@@ -221,7 +219,7 @@ export default {
           EntryId: entryId
         })
       } catch (error) {
-        this.error = error.response.error
+        this.error = error.response.data.error
       }
     },
     async removeBookmark (entryId) {
@@ -230,8 +228,38 @@ export default {
           EntryId: entryId
         })
       } catch (error) {
-        this.error = error.response.error
+        this.error = error.response.data.error
       }
+    },
+    async fetchEntries (search, page) {
+      try {
+        const response = await EntriesService.index(search, page)
+        this.entries = response.data
+        if (this.$store.state.isUserLoggedin) {
+          this.entries.forEach(async entry => {
+            // this.$set is the only way to add a new reactive property
+            this.$set(entry, 'bookmarked', (await BookmarksService.index({
+              entryId: entry.id
+            })).data)
+          })
+        }
+      } catch (error) {
+        this.error = error.response.data.error
+      }
+    },
+    async countEntries (search) {
+      try {
+        const response = await EntriesService.count(search)
+        this.numEntries = response.data.numEntries
+      } catch (error) {
+        this.error = error.response.data.error
+      }
+    },
+    async nextPage (page) {
+      // we store the value so we can use it with the search watcher
+      this.page = page
+      this.countEntries(this.search)
+      this.fetchEntries(this.search, page)
     }
   }
 }
