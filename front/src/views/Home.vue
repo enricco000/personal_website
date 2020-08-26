@@ -144,7 +144,7 @@
                               v-bind="attrs"
                               v-on="on"
                               color="tertiary"
-                              :to="{name: 'post', params: {postId: entry.id, bookmarked: entry.bookmarked}}">
+                              :to="{name: 'Article', params: {articleId: entry.id, bookmarked: entry.bookmarked}}">
                                 <v-icon>
                                   mdi-text-subject
                                 </v-icon>
@@ -181,7 +181,7 @@ import MarkdownItVue from 'markdown-it-vue'
 import 'markdown-it-vue/dist/markdown-it-vue.css'
 
 export default {
-  name: 'Content',
+  name: 'Home',
   components: {
     MarkdownItVue
   },

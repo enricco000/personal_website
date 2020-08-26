@@ -264,7 +264,7 @@ export default {
         this.drawer = false
         this.$store.dispatch('logout')
         this.snackbarRules.snackbar = true
-        setTimeout(() => this.navigateTo('content'), 200)
+        setTimeout(() => this.navigateTo('Home'), 200)
         this.topItems
           .filter(u => { return u.hideOnLogin === true })
           .map(u => { u.show = true })
@@ -303,7 +303,7 @@ export default {
     /* eslint-disable func-call-spacing */
     search: _.debounce (async function (value) {
       const route = {
-        name: 'content'
+        name: 'Home'
       }
       if (this.search !== '') {
         route.query = {

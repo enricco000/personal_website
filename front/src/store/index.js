@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import VuexPersist from 'vuex-persist'
 
 const vuexPersist = new VuexPersist({
-  key: 'personal_site',
+  key: 'personal_website',
   storage: window.sessionStorage
 })
 
@@ -52,6 +52,9 @@ export default new Vuex.Store({
   getters: {
     isUserLoggedin (state) {
       return state.isUserLoggedin
+    },
+    isAdmin (state) {
+      return state.isAdmin
     },
     user (state) {
       return state.user

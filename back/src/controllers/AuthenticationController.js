@@ -65,7 +65,8 @@ module.exports = {
         } else if (response === true) {
           const userJSON = user.toJSON()
           return res.send({
-            user: userJSON,
+            user: userJSON.id,
+            username: userJSON.username,
             token: jwtSignUser(userJSON)
           })
         } else {

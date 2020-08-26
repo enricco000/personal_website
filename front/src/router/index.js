@@ -34,7 +34,7 @@ const routes = [
     component: () => import('../views/Bio.vue')
   },
   {
-    path: '/createcontent',
+    path: '/content/create',
     name: 'CreateContent',
     component: () => import('../views/CreateContent.vue'),
     meta: {
@@ -42,7 +42,7 @@ const routes = [
     }
   },
   {
-    path: '/article/:articleId',
+    path: '/content/:articleId',
     name: 'Article',
     component: () => import('../views/Article.vue')
   },
@@ -66,7 +66,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.state.isAdmin) {
+    if (!store.state.isUserLoggedin) {
       next({
         path: '/login'
       })
