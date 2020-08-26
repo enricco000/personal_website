@@ -10,7 +10,7 @@
     class="text-left"
     :style="mobileNav ? '' : 'max-width: 720px;'"
     >
-      <markdown-it-vue class="md-body" :content="content" />
+      <markdown-it-vue class="md-body" :content="entry.content" />
     </v-col>
 
   </v-row>
@@ -19,9 +19,9 @@
 </template>
 
 <script>
+import EntriesService from '@/services/EntriesService'
 import MarkdownItVue from 'markdown-it-vue'
 import 'markdown-it-vue/dist/markdown-it-vue.css'
-import Foo from '@/components/Foo.md'
 
 export default {
   components: {
@@ -29,8 +29,16 @@ export default {
   },
   data () {
     return {
-      content: Foo
+      error: null,
+      entry: {},
+      bookmarked: false
     }
+  },
+  async mounted () {
+    const entryId = this.$store.state.route.params.entryId
+    this.entry = (await EntriesService.show(entryId)).data
+    this.entry.date = this.post.createdAt.substring(0, 19)
+    this.bookmarked = this.$store.state.route.params.bookmarked
   },
   computed: {
     mobileNav () {

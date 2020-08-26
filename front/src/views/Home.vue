@@ -1,166 +1,159 @@
 <template>
+  <v-row
+  no-gutters>
+  <v-col>
+
     <v-container
-    fluid
-    class="pb-10">
+    class="pb-4 pt-4"
+    flex>
 
-      <v-card
-      hover
-      extended>
-
-          <v-toolbar
+    <v-row>
+      <v-container>
+        <v-card
           color="secondary"
-          class="white--text mb-4">
-            <v-toolbar-title>
-                <h2
-                class="ml-2 mt-2">
-                  Entries
-                </h2>
-            </v-toolbar-title>
-            <template v-slot:extension
-            v-if="this.$store.state.token != null">
-              <v-tooltip bottom>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                    fab
-                    color="quaternary"
-                    bottom
-                    dark
-                    right
-                    absolute
-                    v-bind="attrs"
-                    v-on="on"
-                    to="/content/create"
-                  >
-                    <v-icon>mdi-pen-plus</v-icon>
-                  </v-btn>
-                  </template>
-                  <span>Create entry</span>
-                </v-tooltip>
+          class="white--text pa-0"
+          elevation=8
+          shaped>
+            <v-card-title
+            class="text-h3">
+              Entries
+            </v-card-title>
+
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                fab
+                color="tertiary"
+                bottom
+                dark
+                right
+                absolute
+                v-bind="attrs"
+                v-on="on"
+                to="/entry/create"
+                >
+                  <v-icon>mdi-pen-plus</v-icon>
+                </v-btn>
+              </template>
+              <span>Write new entry</span>
+              </v-tooltip>
+
+          </v-card>
+      </v-container>
+    </v-row>
+
+    <v-row>
+      <v-container
+      v-for="entry in entries" :key="entry.id"
+      class="pa-2">
+        <v-card
+        shaped
+        :to="{ name: 'Entry', params: { entryId: entry.id, bookmarked: entry.bookmarked } }">
+
+        <v-row
+        class="pl-5 pt-2"
+          v-if="$store.state.isUserLoggedin && entry.bookmarked">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+              fab
+              small
+              v-bind="attrs"
+              v-on="on"
+              @click="removeBookmark(entry.id); entry.bookmarked=false">
+            <v-icon>
+              mdi-star
+            </v-icon>
+          </v-btn>
             </template>
-          </v-toolbar>
+            <span>Remove bookmark</span>
+          </v-tooltip>
+        </v-row>
 
-        <v-card-text
-        v-for="entry in entries" :key="entry.id">
+        <v-row
+          class="pl-5 pt-2"
+          v-if="$store.state.isUserLoggedin && !entry.bookmarked">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+              fab
+              small
+              v-bind="attrs"
+              v-on="on"
+              @click="createBookmark(entry.id); entry.bookmarked=true">
+            <v-icon>
+              mdi-star-outline
+            </v-icon>
+          </v-btn>
+            </template>
+            <span>Bookmark this entry</span>
+          </v-tooltip>
+        </v-row>
 
-              <v-card
-              outlined>
+        <v-alert
+        type="error"
+        v-if="error"
+        elevation=6
+        dismissible
+        class="text-left"
+        >
+          {{ error }}
+        </v-alert>
+            <v-row
+            no-gutters>
+              <v-col
+              cols="12">
+                <div class="text-h4 pl-4 pb-1 pt-3 text-left">{{ entry.title }}</div>
+                <div class="text-subtitle-1 text-left pl-4 pb-1">{{ entry.subTitle }}</div>
+                <div class="text-body-1 text-left font-italic truncate pl-4 pr-2">{{ entry.summary }}</div>
+              </v-col>
+            </v-row>
 
+          <v-row>
+            <v-col>
               <v-row
-               class="ml-2 mt-2"
-               v-if="$store.state.isUserLoggedin && entry.bookmarked">
+              class="pl-3">
+                <div class="text-caption text--disabled text-left pl-4">By {{ entry.author }}</div>
+              </v-row>
+              <v-row
+              class="pl-3">
+                <div class="text-caption text--disabled text-left pl-4 pb-0">@ {{ (entry.createdAt).slice(0, 19) }} UTC</div>
+              </v-row>
+            </v-col>
+
+            <v-col
+            cols="4">
+              <v-row
+              justify="end"
+              align="end"
+              class="pr-5">
                 <v-tooltip bottom>
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                    fab
-                    small
-                    v-bind="attrs"
-                    v-on="on"
-                    @click="removeBookmark(entry.id); entry.bookmarked=false">
-                  <v-icon>
-                    mdi-star
-                  </v-icon>
-                </v-btn>
+                        fab
+                        small
+                        dark
+                        v-bind="attrs"
+                        v-on="on"
+                        color="tertiary"
+                        :to="{name: 'Article', params: {articleId: entry.id, bookmarked: entry.bookmarked}}">
+                          <v-icon>
+                            mdi-text-subject
+                          </v-icon>
+                        </v-btn>
                   </template>
-                  <span>Remove bookmark</span>
+                  <span>Read entry</span>
                 </v-tooltip>
               </v-row>
+            </v-col>
+          </v-row>
 
-              <v-row
-               class="ml-2 mt-2"
-               v-if="$store.state.isUserLoggedin && !entry.bookmarked">
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                    fab
-                    small
-                    v-bind="attrs"
-                    v-on="on"
-                    @click="createBookmark(entry.id); entry.bookmarked=true">
-                  <v-icon>
-                    mdi-star-outline
-                  </v-icon>
-                </v-btn>
-                  </template>
-                  <span>Bookmark this entry</span>
-                </v-tooltip>
-              </v-row>
+        </v-card>
+      </v-container>
 
-              <v-alert
-              type="error"
-              v-if="error"
-              elevation=6
-              dismissible
-              class="text-left"
-              >
-                {{ error }}
-              </v-alert>
-
-                <v-row
-                no-gutters>
-
-                  <v-col
-                  cols="8">
-                    <v-list-item>
-                      <v-list-item-content>
-                        <div class="overline text-left mb-1">
-                          {{ entry.author }} - {{ (entry.createdAt).slice(0, 19) }} UTC
-                        </div>
-                        <v-list-item-title class="headline mb-1 text-left">{{ entry.title }}</v-list-item-title>
-                        <v-list-item-subtitle class="text-left mb-2">{{ entry.subTitle }}</v-list-item-subtitle>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-col>
-
-                </v-row>
-
-                <v-row
-                no-gutters
-                class="mb-2">
-                  <v-col
-                  sm="10">
-                    <v-row
-                    no-gutters>
-                      <div
-                      class="text-left ml-4 ma-2 truncate">
-                        <markdown-it-vue class="md-body" :content="String(entry.summary)" />
-                      </div>
-                    </v-row>
-                  </v-col>
-
-                  <v-col
-                  cols="auto"
-                  class="ml-auto">
-                    <v-row
-                    no-gutters
-                    :justify="'end'"
-                    :align="'end'"
-                    class="mr-1 ma-1">
-                      <v-tooltip bottom>
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-btn
-                              fab
-                              small
-                              dark
-                              v-bind="attrs"
-                              v-on="on"
-                              color="tertiary"
-                              :to="{name: 'Article', params: {articleId: entry.id, bookmarked: entry.bookmarked}}">
-                                <v-icon>
-                                  mdi-text-subject
-                                </v-icon>
-                              </v-btn>
-                        </template>
-                        <span>Read entry</span>
-                      </v-tooltip>
-                    </v-row>
-                  </v-col>
-                </v-row>
-
-              </v-card>
-
-        </v-card-text>
-
-        <div class="text-center pb-3">
+      <v-row
+      class="justify-center">
+        <div class="text-center pt-3 pb-3">
           <v-pagination
           v-if="numEntries > 10"
           color="secondary"
@@ -170,23 +163,22 @@
           >
           </v-pagination>
         </div>
+      </v-row>
 
-      </v-card>
+    </v-row>
 
     </v-container>
+
+  </v-col>
+  </v-row>
 </template>
 
 <script>
 import BookmarksService from '@/services/BookmarksService'
 import EntriesService from '@/services/EntriesService'
-import MarkdownItVue from 'markdown-it-vue'
-import 'markdown-it-vue/dist/markdown-it-vue.css'
 
 export default {
   name: 'Home',
-  components: {
-    MarkdownItVue
-  },
   data () {
     return {
       error: null,

@@ -34,17 +34,17 @@ const routes = [
     component: () => import('../views/Bio.vue')
   },
   {
-    path: '/content/create',
-    name: 'CreateContent',
-    component: () => import('../views/CreateContent.vue'),
+    path: '/entry/create',
+    name: 'CreateEntry',
+    component: () => import('../views/CreateEntry.vue'),
     meta: {
       requiresAdmin: true
     }
   },
   {
-    path: '/content/:articleId',
-    name: 'Article',
-    component: () => import('../views/Article.vue')
+    path: '/entry/:entryId',
+    name: 'Entry',
+    component: () => import('../views/Entry.vue')
   },
   {
     path: '/signin',
