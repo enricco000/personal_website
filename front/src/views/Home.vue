@@ -22,7 +22,7 @@
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                v-if="$store.state.isUserLoggedin"
+                v-if="$store.state.isUserLoggedin && $store.state.isAdmin"
                 fab
                 color="tertiary"
                 bottom
@@ -157,7 +157,7 @@
       class="justify-center">
         <div class="text-center pt-3 pb-10">
           <v-pagination
-          v-if="numEntries > 10"
+          :disabled="numEntries < 10"
           color="secondary"
            v-model="page"
            @input="nextPage"
