@@ -1,7 +1,6 @@
 <template>
   <v-container
-  class="fill-height pb-10"
-  fluid>
+  class="fill-height pb-10">
 
     <v-row
     :class="mobileNav ? 'justify-start' : 'justify-center'">

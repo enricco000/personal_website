@@ -43,10 +43,11 @@
 
     <v-row>
       <v-container>
-        <v-row>
+        <v-row
+        dense>
           <v-col
           v-for="entry in entries" :key="entry.id"
-          :cols="mobileNav ? '12' : '6'">
+          :cols="mobileNav ? '12' : '4'">
             <v-card
             shaped
             :to="{ name: 'Entry', params: { entryId: entry.id, bookmarked: entry.bookmarked } }">
@@ -105,48 +106,27 @@
             no-gutters>
               <v-col
               cols="12">
-                <div class="text-h5 pl-4 pb-1 pt-3 text-left">{{ entry.title }}</div>
-                <div class="text-subtitle-2 text-left pl-4 pb-1">{{ entry.subTitle }}</div>
-                <div class="text-body-2 text-left font-italic truncate pl-4 pr-2">{{ entry.summary }}</div>
+                <div class="text-h5 pl-4 pr-4 pb-1 pt-3 text-left">{{ entry.title }}</div>
+                <div class="text-body-1 text-left pl-4 pr-4 pb-3">{{ entry.subTitle }}</div>
+                <div class="text-subtitle-2 text-left font-italic truncate pl-4 pr-4 pt-1">{{ entry.summary }}</div>
               </v-col>
             </v-row>
 
-            <v-row>
+            <v-row
+            dense
+            class="pb-2">
               <v-col>
                 <v-row
-                class="pl-3">
-                  <div class="text-caption text--disabled text-left pl-4">By {{ entry.author }}</div>
+                class="pl-3 pr-3">
+                  <div class="text-overline text--secondary text-left pl-4 pr-4 pr-2">{{ entry.topics }}</div>
                 </v-row>
                 <v-row
-                class="pl-3">
-                  <div class="text-caption text--disabled text-left pl-4 pb-0">@ {{ (entry.createdAt).slice(0, 19) }} UTC</div>
+                class="pl-3 pr-3">
+                  <div class="text-caption text--disabled text-left pl-4 pr-4">By {{ entry.author }}</div>
                 </v-row>
-              </v-col>
-
-              <v-col
-              cols="4">
                 <v-row
-                justify="end"
-                align="end"
-                class="pr-5">
-                  <v-tooltip bottom>
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn
-                      v-if="$store.state.isUserLoggedin"
-                      fab
-                      small
-                      dark
-                      v-bind="attrs"
-                      v-on="on"
-                      color="tertiary"
-                      :to="{name: 'Entry', params: {entryId: entry.id, bookmarked: entry.bookmarked}}">
-                        <v-icon>
-                          mdi-text-subject
-                        </v-icon>
-                      </v-btn>
-                    </template>
-                    <span>Read entry</span>
-                  </v-tooltip>
+                class="pl-3 pr-3">
+                  <div class="text-caption text--disabled text-left pl-4 pr-4 pb-0">@ {{ (entry.createdAt).slice(0, 19) }} UTC</div>
                 </v-row>
               </v-col>
             </v-row>
@@ -163,11 +143,12 @@
         class="justify-center">
           <div class="text-center pt-3 pb-5">
             <v-pagination
-            :disabled="numEntries < 10"
+            :disabled="numEntries < 6"
+            total-visible=6
             color="secondary"
             v-model="page"
             @input="nextPage"
-            :length="Math.ceil(numEntries / 10)"
+            :length="Math.ceil(numEntries / 6)"
             >
             </v-pagination>
           </div>

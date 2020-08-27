@@ -7,10 +7,11 @@ module.exports = {
       let entries = null
       const search = req.query.search
       const page = req.query.page
+      const articlesPerPage = 6
       if (search) {
         entries = await Entry.findAll({
-          offset: (page - 1) * 10,
-          limit: 10,
+          offset: (page - 1) * articlesPerPage,
+          limit: articlesPerPage,
           where: {
             [Op.or]: [
               'title', 'author', 'content', 'summary'
@@ -27,8 +28,8 @@ module.exports = {
         })
       } else {
         entries = await Entry.findAll({
-          offset: (page - 1) * 10,
-          limit: 10,
+          offset: (page - 1) * articlesPerPage,
+          limit: articlesPerPage,
           order: [
             ['id', 'DESC'],
             ['title', 'ASC']

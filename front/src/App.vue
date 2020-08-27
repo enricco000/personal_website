@@ -50,4 +50,5 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+.katex { font-size: 1em; }
 </style>

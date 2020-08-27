@@ -3,5 +3,6 @@ front/src/config
 back/node_modules/
 back/seed/
 back/src/config/
+back/.htaccess
 .htaccess
 personal_site_db.sqlite

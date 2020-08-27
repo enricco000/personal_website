@@ -1,3 +1,3 @@
 # About
 
-You should write something about yourself here
+Write something about yourself

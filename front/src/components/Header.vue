@@ -115,9 +115,9 @@
         rounded
         clearable
         solo
-        :label="mobileNav ? 'Title, author, content' : 'Search title, author or content'"
+        :label="mobileNav ? 'Title, content, topics' : 'Search title, author, content or topics'"
         class="shrink pr-1"
-        :style="mobileNav ? 'width:250px' : 'width:350px'"
+        :style="mobileNav ? 'width:250px' : 'width:380px'"
         >
         </v-text-field>
         <v-tooltip bottom
@@ -155,7 +155,7 @@
 
           <v-list-item
           v-if="!mobileNav"
-          to="About"
+          to="about"
           >
             <v-list-item-content>
               <v-list-item-title class="title text-left">
