@@ -155,6 +155,7 @@
 
           <v-list-item
           v-if="!mobileNav"
+          to="About"
           >
             <v-list-item-content>
               <v-list-item-title class="title text-left">

@@ -27,9 +27,10 @@
 
         <v-divider></v-divider>
 
-        <v-card-text class="white--text">
+        <v-card-text
+        class="white--text">
           by<br>
-          <strong>{{ author }}</strong> — {{ new Date().getFullYear() }}
+          <a class="white--text font-weight-black text-decoration-none" href="about">{{ author }}</a> — {{ new Date().getFullYear() }}
         </v-card-text>
       </v-card>
     </v-footer>
