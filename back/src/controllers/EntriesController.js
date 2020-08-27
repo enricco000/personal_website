@@ -50,7 +50,7 @@ module.exports = {
         numEntries = await Entry.count({
           where: {
             [Op.or]: [
-              'title', 'author', 'content', 'summary'
+              'title', 'author', 'content'
             ].map(key => ({
               [key]: {
                 [Op.like]: `%${search}%`

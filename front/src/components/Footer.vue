@@ -43,7 +43,7 @@ export default {
   data () {
     return {
       links: [
-        { name: 'home', icon: 'mdi-duck', mailTo: false, url: null },
+        { name: 'home', icon: 'mdi-pig', mailTo: false, url: null },
         { name: 'mail', icon: 'mdi-email', mailTo: true, url: null },
         { name: 'github', icon: 'mdi-github', mailTo: false, url: null }
       ],

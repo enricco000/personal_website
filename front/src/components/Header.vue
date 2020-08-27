@@ -15,7 +15,8 @@
 
     <v-toolbar-title>
 
-        <v-tooltip bottom>
+        <v-tooltip bottom
+        v-if="showTopLinks">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
             dark
@@ -25,13 +26,14 @@
             v-on="on"
             to="/"
             >
-              <v-icon>mdi-duck</v-icon>
+              <v-icon>mdi-pig-variant</v-icon>
             </v-btn>
           </template>
             <span>Home</span>
         </v-tooltip>
 
-        <v-tooltip bottom>
+        <v-tooltip bottom
+        v-if="showTopLinks">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
             dark
@@ -47,7 +49,8 @@
             <span>Biochemistry & Biophysics</span>
         </v-tooltip>
 
-        <v-tooltip bottom>
+        <v-tooltip bottom
+        v-if="showTopLinks">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
             dark
@@ -63,7 +66,8 @@
             <span>Data Science</span>
         </v-tooltip>
 
-        <v-tooltip bottom>
+        <v-tooltip bottom
+        v-if="showTopLinks">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
             dark
@@ -79,7 +83,8 @@
             <span>Development</span>
         </v-tooltip>
 
-        <v-tooltip bottom>
+        <v-tooltip bottom
+        v-if="showTopLinks">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
             dark
@@ -99,19 +104,39 @@
 
     <v-spacer></v-spacer>
 
+      <v-row
+      justify=end
+      class="pr-3">
         <v-text-field
         hide-details
-        v-if="$route.name === 'Home'"
+        v-if="$route.name === 'Home' && searchBar"
         v-model="search"
         single-line
+        rounded
+        clearable
         solo
-        label="Title or Content"
-        class="shrink"
+        :label="mobileNav ? 'Title, author, content' : 'Search title, author or content'"
+        class="shrink pr-1"
+        :style="mobileNav ? 'width:250px' : 'width:350px'"
         >
-          <v-icon slot="append">
-            search
-          </v-icon>
         </v-text-field>
+        <v-tooltip bottom
+        v-if="$route.name === 'Home'"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+             @click="toggleSearchBar(); showLinks()"
+            icon
+            dark
+            v-bind="attrs"
+            v-on="on"
+            >
+              <v-icon>search</v-icon>
+            </v-btn>
+          </template>
+            <span>Toggle search bar</span>
+        </v-tooltip>
+      </v-row>
 
   </v-app-bar>
 
@@ -133,10 +158,10 @@
           >
             <v-list-item-content>
               <v-list-item-title class="title text-left">
-                Name
+                {{ headerName }}
               </v-list-item-title>
               <v-list-item-subtitle class="text-left">
-                Last Name
+                {{ headerLastName }}
               </v-list-item-subtitle>
               <v-list-item-subtitle class="text-left">
                 (•̀ᴗ•́)و ̑̑
@@ -180,14 +205,13 @@
         <v-list-item-group>
 
           <v-list-item
-          class="text-left"
+          class="text-left pr-0 pl-0"
           v-for="item of bottomItems"
           :key="item.title"
           @click="item.action()"
           link>
 
             <v-list-item-icon
-            class="mr-4"
             >
               <v-icon>
                 {{ item.icon }}
@@ -208,15 +232,21 @@
 
     <v-snackbar
       v-model="snackbarRules.snackbar"
-      :timeout="snackbarRules.timeout">
-        {{ snackbarRules.text }}
+      :timeout="snackbarRules.timeout"
+    >
+      {{ snackbarRules.text }}
+
+      <template v-slot:action="{ attrs }">
         <v-btn
           color="blue"
           text
-          @click="snackbarRules.snackbar = false">
+          v-bind="attrs"
+          @click="snackbarRules.snackbar = false"
+        >
           Close
         </v-btn>
-      </v-snackbar>
+      </template>
+    </v-snackbar>
 
   </v-container>
 </template>
@@ -228,8 +258,12 @@ export default {
   data () {
     return {
       drawer: null,
+      headerName: 'Name',
+      headerLastName: 'Last Name',
+      searchBar: false,
+      showTopLinks: true,
       topItems: [
-        { title: 'Home', icon: 'mdi-duck', showOnLogin: false, hideOnLogin: false, to: '/', show: true },
+        { title: 'Home', icon: 'mdi-pig-variant', showOnLogin: false, hideOnLogin: false, to: '/', show: true },
         // { title: 'Tienda', icon: 'mdi-storefront', showOnLogin: false, hideOnLogin: false, to: '/shop', show: true },
         { title: 'Sign up', icon: 'mdi-account-plus', showOnLogin: false, hideOnLogin: true, to: '/signup', show: true },
         { title: 'Sign in', icon: 'mdi-login', showOnLogin: false, hideOnLogin: true, to: '/signin', show: true }
@@ -242,7 +276,7 @@ export default {
       snackbarRules: {
         snackbar: false,
         text: '¡Adiós!',
-        timeout: 1000
+        timeout: 2000
       },
       search: null
     }
@@ -285,6 +319,12 @@ export default {
           .filter(u => { return u.hideOnLogin === true })
           .map(function (u) { u.show = false })
       }
+    },
+    showLinks () {
+      this.showTopLinks = !(this.mobileNav && this.searchBar && this.$route.name === 'Home')
+    },
+    toggleSearchBar () {
+      this.searchBar = !this.searchBar
     }
   },
   computed: {
@@ -319,6 +359,15 @@ export default {
       handler (value) {
         this.search = value
       }
+    }
+  },
+  created () {
+    try {
+      const config = require('../config/index.js')
+      this.headerName = config.headerName
+      this.headerLastName = config.headerLastName
+    } catch (error) {
+      console.log('Please note that you can configure this URL in the config file')
     }
   }
 }

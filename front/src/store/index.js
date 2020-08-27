@@ -14,7 +14,7 @@ export default new Vuex.Store({
   plugins: [vuexPersist.plugin],
   state: {
     token: null,
-    username: null,
+    user: null,
     isAdmin: null,
     isUserLoggedin: false
   },
@@ -27,8 +27,8 @@ export default new Vuex.Store({
         state.isUserLoggedin = false
       }
     },
-    setUser (state, username) {
-      state.username = username
+    setUser (state, user) {
+      state.username = user
     },
     setIsAdmin (state, isAdmin) {
       state.isAdmin = isAdmin
@@ -38,8 +38,8 @@ export default new Vuex.Store({
     setToken ({ commit }, token) {
       commit('setToken', token)
     },
-    setUser ({ commit }, username) {
-      commit('setUser', username)
+    setUser ({ commit }, user) {
+      commit('setUser', user)
     },
     setIsAdmin ({ commit }, isAdmin) {
       commit('setIsAdmin', isAdmin)
@@ -57,7 +57,7 @@ export default new Vuex.Store({
       return state.isAdmin
     },
     username: state => {
-      return state.username
+      return state.user
     }
   }
 })

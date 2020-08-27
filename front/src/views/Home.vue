@@ -16,7 +16,7 @@
           shaped>
             <v-card-title
             class="text-h3">
-              Entries
+              All entries
             </v-card-title>
 
             <v-tooltip bottom>
@@ -155,7 +155,7 @@
 
       <v-row
       class="justify-center">
-        <div class="text-center pt-3 pb-3">
+        <div class="text-center pt-3 pb-10">
           <v-pagination
           v-if="numEntries > 10"
           color="secondary"

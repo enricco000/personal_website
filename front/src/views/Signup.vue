@@ -15,7 +15,8 @@
       </v-card>
     </v-container>
 
-    <card-slot>
+    <card-slot
+    class="pb-10">
 
       <div slot="CardText">
         <v-form>
@@ -79,14 +80,20 @@
 
         <v-snackbar
         v-model="snackbarRules.snackbar"
-        :timeout="snackbarRules.timeout">
+        :timeout="snackbarRules.timeout"
+        >
           {{ snackbarRules.text }}
-          <v-btn
-            color="green"
-            text
-            @click="snackbarRules.snackbar = false">
-            OK
-          </v-btn>
+
+          <template v-slot:action="{ attrs }">
+            <v-btn
+              color="green"
+              text
+              v-bind="attrs"
+              @click="snackbarRules.snackbar = false"
+            >
+              OK
+            </v-btn>
+          </template>
         </v-snackbar>
       </div>
 
