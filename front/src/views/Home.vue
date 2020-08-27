@@ -22,6 +22,7 @@
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
+                v-if="$store.state.isUserLoggedin"
                 fab
                 color="tertiary"
                 bottom
@@ -45,7 +46,7 @@
     <v-row>
       <v-container
       v-for="entry in entries" :key="entry.id"
-      class="pa-2">
+      class="pt-2">
         <v-card
         shaped
         :to="{ name: 'Entry', params: { entryId: entry.id, bookmarked: entry.bookmarked } }">
@@ -130,17 +131,18 @@
                 <v-tooltip bottom>
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                        fab
-                        small
-                        dark
-                        v-bind="attrs"
-                        v-on="on"
-                        color="tertiary"
-                        :to="{name: 'Article', params: {articleId: entry.id, bookmarked: entry.bookmarked}}">
-                          <v-icon>
-                            mdi-text-subject
-                          </v-icon>
-                        </v-btn>
+                    v-if="$store.state.isUserLoggedin"
+                    fab
+                    small
+                    dark
+                    v-bind="attrs"
+                    v-on="on"
+                    color="tertiary"
+                    :to="{name: 'Entry', params: {entryId: entry.id, bookmarked: entry.bookmarked}}">
+                      <v-icon>
+                        mdi-text-subject
+                      </v-icon>
+                    </v-btn>
                   </template>
                   <span>Read entry</span>
                 </v-tooltip>

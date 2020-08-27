@@ -10,7 +10,7 @@
     class="text-left"
     :style="mobileNav ? '' : 'max-width: 720px;'"
     >
-      <markdown-it-vue class="md-body" :content="entry.content" />
+      <markdown-it-vue class="md-body" :content="String(entry.content)" />
     </v-col>
 
   </v-row>
@@ -37,7 +37,7 @@ export default {
   async mounted () {
     const entryId = this.$store.state.route.params.entryId
     this.entry = (await EntriesService.show(entryId)).data
-    this.entry.date = this.post.createdAt.substring(0, 19)
+    this.entry.date = this.entry.createdAt.substring(0, 19)
     this.bookmarked = this.$store.state.route.params.bookmarked
   },
   computed: {

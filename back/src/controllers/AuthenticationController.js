@@ -67,6 +67,7 @@ module.exports = {
           return res.send({
             user: userJSON.id,
             username: userJSON.username,
+            isAdmin: userJSON.isAdmin,
             token: jwtSignUser(userJSON)
           })
         } else {

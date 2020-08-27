@@ -24,11 +24,20 @@
 <script>
 import PageHeader from '@/components/Header.vue'
 import PageFooter from '@/components/Footer.vue'
+
 export default {
   name: 'App',
   components: {
     PageHeader,
     PageFooter
+  },
+  created () {
+    try {
+      const config = require('./config/index.js')
+      document.title = config.title
+    } catch (error) {
+      document.title = 'front'
+    }
   }
 }
 </script>

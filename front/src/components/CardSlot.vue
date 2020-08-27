@@ -1,44 +1,32 @@
 <template>
+  <v-row>
+    <v-container
+    fluid>
 
-  <v-container
-  fluid>
+      <v-card
+      shaped
+      class="pt-2">
 
-    <v-card
-    hover>
-      <v-toolbar
-      color="secondary"
-      dark>
+        <v-card-text>
+          <slot name="CardText">
+          <div class="text-left">
+            Default Card Text
+          </div>
+          </slot>
+        </v-card-text>
 
-        <v-toolbar-title>
-          <h2>
-            <slot name="CardTitle">
-              Default Card Title
-            </slot>
-          </h2>
-        </v-toolbar-title>
+        <slot name="BottomCard"></slot>
 
-      </v-toolbar>
+      </v-card>
 
-      <v-card-text>
-        <slot name="CardText">
-        <div class="text-left">
-          Default Card Text
-        </div>
-        </slot>
-      </v-card-text>
-
-      <slot name="BottomCard"></slot>
-
-    </v-card>
-
-  </v-container>
+    </v-container>
+  </v-row>
 </template>
 
 <script>
 export default {
   name: 'CardSlot',
   props: [
-    'CardTitle',
     'CardText',
     'BottomCard'
   ]

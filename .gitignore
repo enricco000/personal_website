@@ -1,4 +1,5 @@
 front/node_modules/
+front/src/config
 back/node_modules/
 back/seed/
 back/src/config/

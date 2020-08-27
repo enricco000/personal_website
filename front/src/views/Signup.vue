@@ -1,10 +1,21 @@
 <template>
   <v-container>
-    <card-slot>
 
-      <div slot="CardTitle">
-        Sign up
-      </div>
+    <v-container
+    class="pb-3 pl-0 pr-0">
+      <v-card
+      color="secondary"
+      class="white--text pa-0"
+      elevation=8
+      shaped>
+        <v-card-title
+        class="text-h3">
+          Sign up
+        </v-card-title>
+      </v-card>
+    </v-container>
+
+    <card-slot>
 
       <div slot="CardText">
         <v-form>

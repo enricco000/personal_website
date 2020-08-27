@@ -38,6 +38,7 @@ const routes = [
     name: 'CreateEntry',
     component: () => import('../views/CreateEntry.vue'),
     meta: {
+      requiresAuth: true,
       requiresAdmin: true
     }
   },
@@ -48,13 +49,13 @@ const routes = [
   },
   {
     path: '/signin',
-    name: 'Login',
-    component: () => import('../views/Login.vue')
+    name: 'Signin',
+    component: () => import('../views/Signin.vue')
   },
   {
     path: '/signup',
-    name: 'Register',
-    component: () => import('../views/Register.vue')
+    name: 'Signup',
+    component: () => import('../views/Signup.vue')
   }
 ]
 
@@ -68,7 +69,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.state.isUserLoggedin) {
       next({
-        path: '/login'
+        path: '/signin'
       })
     } else {
       next()

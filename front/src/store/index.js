@@ -4,7 +4,7 @@ import VuexPersist from 'vuex-persist'
 
 const vuexPersist = new VuexPersist({
   key: 'personal_website',
-  storage: window.sessionStorage
+  storage: window.localStorage
 })
 
 Vue.use(Vuex)
@@ -28,7 +28,7 @@ export default new Vuex.Store({
       }
     },
     setUser (state, username) {
-      state.user = username
+      state.username = username
     },
     setIsAdmin (state, isAdmin) {
       state.isAdmin = isAdmin
@@ -50,14 +50,14 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    isUserLoggedin (state) {
+    isUserLoggedin: state => {
       return state.isUserLoggedin
     },
-    isAdmin (state) {
+    isAdmin: state => {
       return state.isAdmin
     },
-    user (state) {
-      return state.user
+    username: state => {
+      return state.username
     }
   }
 })

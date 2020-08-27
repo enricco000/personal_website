@@ -1,11 +1,22 @@
 <template>
   <v-container
   fluid>
-    <card-slot>
 
-      <div slot="CardTitle">
-        Sign in
-      </div>
+  <v-container
+    class="pb-3 pl-0 pr-0">
+      <v-card
+      color="secondary"
+      class="white--text pa-0"
+      elevation=8
+      shaped>
+        <v-card-title
+        class="text-h3">
+          Sign in
+        </v-card-title>
+      </v-card>
+    </v-container>
+
+    <card-slot>
 
       <div slot="CardText">
         <v-form>
@@ -77,6 +88,7 @@
 <script>
 import AuthenticationService from '@/services/AuthenticationService.js'
 import CardSlot from '@/components/CardSlot'
+
 export default {
   components: {
     CardSlot
@@ -105,7 +117,8 @@ export default {
           password: this.password
         })
         this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.user)
+        this.$store.dispatch('setUser', response.data.username)
+        this.$store.dispatch('setIsAdmin', response.data.isAdmin)
         this.snackbarRules.snackbar = true
         this.error = null
         setTimeout(() => this.$router.push('/'), 1250)

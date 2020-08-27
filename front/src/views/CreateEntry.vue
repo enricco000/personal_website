@@ -1,14 +1,26 @@
 <template>
     <v-container
-    class="pb-10"
+    class="pb-5 pt-6"
     fluid>
+
+    <v-container
+    class="pa-0">
+      <v-card
+      color="secondary"
+      class="white--text pa-0"
+      elevation=8
+      shaped>
+        <v-card-title
+        class="text-h3">
+          New entry
+        </v-card-title>
+      </v-card>
+    </v-container>
+
        <v-row>
          <v-col>
 
           <card-slot>
-            <div slot="CardTitle">
-                Create Entry
-            </div>
 
             <div class="text-left" slot="CardText">
 
@@ -18,10 +30,19 @@
                   outlined>
                     <v-container>
                       <v-row>
-                        <v-col cols="12" sm="6">
+                        <v-col cols="6">
                           <v-text-field
                             v-model="entry.title"
                             label="Title*"
+                            :rules="[value => !!value || 'Required']"
+                            :prepend-inner-icon="'mdi-crown'">
+                          </v-text-field>
+                        </v-col>
+
+                        <v-col cols="6">
+                          <v-text-field
+                            v-model="entry.author"
+                            label="Author*"
                             :rules="[value => !!value || 'Required']"
                             :prepend-inner-icon="'mdi-crown'">
                           </v-text-field>
@@ -123,6 +144,7 @@
 <script>
 import CardSlot from '@/components/CardSlot'
 import EntriesService from '@/services/EntriesService'
+
 export default {
   name: 'CreateContent',
   data () {
@@ -152,14 +174,14 @@ export default {
         await EntriesService.post(this.entry)
         this.snackbarRules.snackbar = true
         this.error = null
-        setTimeout(() => this.$router.push({ name: 'content' }), 1250)
+        setTimeout(() => this.$router.push({ name: 'Home' }), 1250)
       } catch (error) {
         this.error = error.response.data.error
       }
     }
   },
   mounted () {
-    this.entry.author = this.$store.state.user.username
+    this.author = this.$store.state.username
   }
 }
 </script>
