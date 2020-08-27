@@ -79,6 +79,29 @@
                       <v-row>
                         <v-col>
                           <v-textarea
+                          v-model="entry.summary"
+                          label="Summary*"
+                          :rules="[value => !!value || 'Required']"
+                          rows="2"
+                          auto-grow
+                          clearable
+                          clear-icon="cancel"
+                          :prepend-inner-icon="'mdi-form-textarea'">
+                          </v-textarea>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-card
+                  outlined>
+                    <v-container>
+                      <v-row>
+                        <v-col>
+                          <v-textarea
                           v-model="entry.content"
                           label="Content*"
                           :rules="[value => !!value || 'Required']"
@@ -154,7 +177,7 @@ export default {
         title: null,
         subTitle: null,
         summary: null,
-        author: null,
+        author: undefined,
         content: null,
         topics: null
       },
@@ -180,8 +203,8 @@ export default {
       }
     }
   },
-  mounted () {
-    this.author = this.$store.state.username
+  created () {
+    this.$set(this.entry, 'author', this.$store.state.username)
   }
 }
 </script>

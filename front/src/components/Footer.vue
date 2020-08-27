@@ -14,20 +14,22 @@
       >
         <v-card-text>
           <v-btn
-            v-for="icon in icons"
-            :key="icon"
+            v-for="link in links"
+            :key="link.name"
             class="mx-4"
             icon
+            :href="link.mailTo ? 'mailto:' + link.url : link.url"
           >
-            <v-icon size="24px">{{ icon }}</v-icon>
+            <v-icon size="24px">{{ link.icon }}</v-icon>
           </v-btn>
         </v-card-text>
 
         <v-divider></v-divider>
 
         <v-card-text class="white--text">
+          by<br>
           {{ new Date().getFullYear() }} — <strong>
-            Author
+            {{ author }}
           </strong>
         </v-card-text>
       </v-card>
@@ -38,13 +40,27 @@
 <script>
 export default {
   name: 'Footer',
-  data: () => ({
-    icons: [
-      'mdi-duck',
-      'mdi-email',
-      'mdi-github'
-    ]
-  })
+  data () {
+    return {
+      links: [
+        { name: 'home', icon: 'mdi-duck', mailTo: false, url: null },
+        { name: 'mail', icon: 'mdi-email', mailTo: true, url: null },
+        { name: 'github', icon: 'mdi-github', mailTo: false, url: null }
+      ],
+      author: 'Author'
+    }
+  },
+  created () {
+    try {
+      const config = require('../config/index.js')
+      this.links.forEach(link => {
+        link.url = config.footerURLs[link.name]
+      })
+      this.author = config.footerName
+    } catch (error) {
+      console.log('Please note that you can configure this URL in the config file')
+    }
+  }
 }
 </script>
 

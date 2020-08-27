@@ -2,15 +2,15 @@ const Joi = require('joi')
 
 module.exports = {
   post (req, res, next) {
-    const schema = {
+    const schema = Joi.object({
       title: Joi.string().required(),
       subTitle: Joi.string().allow('').allow(null),
       summary: Joi.string().required(),
       author: Joi.string().required(),
       content: Joi.string().required(),
       topics: Joi.string().required()
-    }
-    const { error } = Joi.validate(req.body, schema)
+    })
+    const { error } = schema.validate(req.body)
     if (error) {
       switch (error.details[0].context.key) {
         case 'title':
