@@ -104,9 +104,9 @@
             no-gutters>
               <v-col
               cols="12">
-                <div class="text-h4 pl-4 pb-1 pt-3 text-left">{{ entry.title }}</div>
-                <div class="text-subtitle-1 text-left pl-4 pb-1">{{ entry.subTitle }}</div>
-                <div class="text-body-1 text-left font-italic truncate pl-4 pr-2">{{ entry.summary }}</div>
+                <div class="text-h5 pl-4 pb-1 pt-3 text-left">{{ entry.title }}</div>
+                <div class="text-subtitle-2 text-left pl-4 pb-1">{{ entry.subTitle }}</div>
+                <div class="text-body-2 text-left font-italic truncate pl-4 pr-2">{{ entry.summary }}</div>
               </v-col>
             </v-row>
 

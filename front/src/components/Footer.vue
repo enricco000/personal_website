@@ -1,6 +1,7 @@
 <template>
   <v-container
-  fluid>
+  fluid
+  v-if="!$route.meta.hideNavigation">
     <v-footer
       :padless="true"
       absolute
@@ -28,9 +29,7 @@
 
         <v-card-text class="white--text">
           by<br>
-          {{ new Date().getFullYear() }} — <strong>
-            {{ author }}
-          </strong>
+          <strong>{{ author }}</strong> — {{ new Date().getFullYear() }}
         </v-card-text>
       </v-card>
     </v-footer>
@@ -43,7 +42,7 @@ export default {
   data () {
     return {
       links: [
-        { name: 'home', icon: 'mdi-pig', mailTo: false, url: null },
+        { name: 'home', icon: 'mdi-duck', mailTo: false, url: null },
         { name: 'mail', icon: 'mdi-email', mailTo: true, url: null },
         { name: 'github', icon: 'mdi-github', mailTo: false, url: null }
       ],

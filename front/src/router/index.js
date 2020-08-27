@@ -56,6 +56,18 @@ const routes = [
     path: '/signup',
     name: 'Signup',
     component: () => import('../views/Signup.vue')
+  },
+  {
+    path: '/404',
+    name: 'NotFound',
+    component: () => import('../views/NotFound.vue'),
+    meta: {
+      hideNavigation: true
+    }
+  },
+  {
+    path: '*',
+    redirect: '/404'
   }
 ]
 
