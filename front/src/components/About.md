@@ -1,3 +1,2 @@
 # About
-
-Write something about yourself
+Write about yourself

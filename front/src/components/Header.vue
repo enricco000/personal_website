@@ -155,7 +155,8 @@
 
           <v-list-item
           v-if="!mobileNav"
-          to="about"
+          exact
+          @click="navigateTo('About')"
           >
             <v-list-item-content>
               <v-list-item-title class="title text-left">
@@ -287,9 +288,6 @@ export default {
       if (this.$route.name !== name) {
         this.$router.push({ name: name })
       }
-    },
-    navigateToSettings () {
-      this.navigateTo('settings')
     },
     navigateToMarkers () {
       this.navigateTo('bookmarks')
