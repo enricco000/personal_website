@@ -7,7 +7,7 @@ export default {
     })
   },
   post (bookmark) {
-    return Api().post('bookmarks', {
+    return Api().post('bookmarks/create', {
       params: bookmark
     })
   },
@@ -16,9 +16,8 @@ export default {
       params: bookmark
     })
   },
-  indexer (UserId) {
+  indexer () {
     return Api().get('bookmarks/indexer', {
-      params: UserId
     })
   }
 }

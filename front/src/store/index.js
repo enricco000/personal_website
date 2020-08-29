@@ -15,7 +15,7 @@ export default new Vuex.Store({
   state: {
     token: null,
     user: null,
-    isAdmin: null,
+    isAdmin: false,
     isUserLoggedin: false
   },
   mutations: {
@@ -28,7 +28,7 @@ export default new Vuex.Store({
       }
     },
     setUser (state, user) {
-      state.username = user
+      state.user = user
     },
     setIsAdmin (state, isAdmin) {
       state.isAdmin = isAdmin
@@ -45,8 +45,9 @@ export default new Vuex.Store({
       commit('setIsAdmin', isAdmin)
     },
     logout ({ commit }) {
-      commit('setUser', null)
       commit('setToken', null)
+      commit('setUser', null)
+      commit('setIsAdmin', false)
     }
   },
   getters: {
@@ -56,7 +57,7 @@ export default new Vuex.Store({
     isAdmin: state => {
       return state.isAdmin
     },
-    username: state => {
+    user: state => {
       return state.user
     }
   }

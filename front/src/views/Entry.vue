@@ -7,7 +7,6 @@
 
     <v-col
     class="text-left"
-    :style="mobileNav ? '' : 'max-width: 720px;'"
     >
       <markdown-it-vue class="md-body" :content="String(entry.content)" />
     </v-col>

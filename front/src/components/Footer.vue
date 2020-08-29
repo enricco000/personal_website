@@ -1,6 +1,6 @@
 <template>
   <v-container
-  fluid
+  class="pt-5"
   v-if="!$route.meta.hideNavigation">
     <v-footer
       :padless="true"

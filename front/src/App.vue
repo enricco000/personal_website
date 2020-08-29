@@ -8,7 +8,8 @@
       </v-container>
 
       <v-container
-      class="pt-5 pb-16">
+      class="pt-5 pb-16 pl-2 pr-2"
+      :style="mobileNav ? '' : 'max-width: 1080px;'">
         <router-view />
       </v-container>
 
@@ -37,6 +38,11 @@ export default {
       document.title = config.title
     } catch (error) {
       document.title = 'front'
+    }
+  },
+  computed: {
+    mobileNav () {
+      return this.$vuetify.breakpoint.smAndDown
     }
   }
 }

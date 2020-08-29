@@ -1,5 +1,6 @@
 <template>
     <v-container
+    :style="mobileNav ? '' : 'max-width: 1080px;'"
     class="pb-5 pt-6"
     fluid>
 
@@ -211,6 +212,11 @@ export default {
   },
   created () {
     this.$set(this.entry, 'author', this.$store.state.username)
+  },
+  computed: {
+    mobileNav () {
+      return this.$vuetify.breakpoint.smAndDown
+    }
   }
 }
 </script>

@@ -3,7 +3,7 @@
   fluid>
 
   <v-container
-    class="pb-3 pl-0 pr-0">
+    class="pb-3 pl-0 pr-0 pt-2">
       <v-card
       color="secondary"
       class="white--text pa-0"
@@ -124,8 +124,8 @@ export default {
           password: this.password
         })
         this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.username)
-        this.$store.dispatch('setIsAdmin', response.data.isAdmin)
+        this.$store.dispatch('setUser', response.data.user)
+        this.$store.dispatch('setIsAdmin', response.data.user.isAdmin)
         this.snackbarRules.snackbar = true
         this.error = null
         setTimeout(() => this.$router.push('/'), 1250)

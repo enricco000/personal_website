@@ -1,5 +1,6 @@
 front/node_modules/
 front/src/config
+front/tests
 back/node_modules/
 back/seed/
 back/src/config/

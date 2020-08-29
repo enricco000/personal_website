@@ -65,8 +65,7 @@ module.exports = {
         } else if (response === true) {
           const userJSON = user.toJSON()
           return res.send({
-            username: userJSON.username,
-            isAdmin: userJSON.isAdmin,
+            user: userJSON,
             token: jwtSignUser(userJSON)
           })
         } else {

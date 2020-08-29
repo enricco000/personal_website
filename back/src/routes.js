@@ -39,7 +39,7 @@ module.exports = (app) => {
     isAuthenticated,
     BookmarksController.indexer)
 
-  app.post('/bookmarks',
+  app.post('/bookmarks/create',
     isAuthenticated,
     BookmarksController.post)
 

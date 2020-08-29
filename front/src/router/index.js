@@ -42,6 +42,14 @@ const routes = [
     component: () => import('../views/Bio.vue')
   },
   {
+    path: '/bookmarks',
+    name: 'Bookmarks',
+    component: () => import('../views/Bookmarks.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: '/entry/create',
     name: 'CreateEntry',
     component: () => import('../views/CreateEntry.vue'),

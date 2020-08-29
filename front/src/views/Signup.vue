@@ -1,8 +1,9 @@
 <template>
-  <v-container>
+  <v-container
+  fluid>
 
     <v-container
-    class="pb-3 pl-0 pr-0">
+    class="pb-3 pl-0 pr-0 pt-2">
       <v-card
       color="secondary"
       class="white--text pa-0"

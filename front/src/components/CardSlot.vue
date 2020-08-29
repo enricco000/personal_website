@@ -1,11 +1,12 @@
 <template>
   <v-row>
     <v-container
-    fluid>
+    fluid
+    class="pt-2 pb-2">
 
       <v-card
-      shaped
-      class="pt-2">
+      class="pt-2 pb-2"
+      shaped>
 
         <v-card-text>
           <slot name="CardText">

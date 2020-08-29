@@ -5,6 +5,7 @@
   <v-app-bar
   v-if="!$route.meta.hideNavigation"
   :app=true
+  class="pb-5"
   color="primary">
 
     <v-app-bar-nav-icon
@@ -255,6 +256,7 @@
 
 <script>
 import _ from 'lodash'
+
 export default {
   name: 'Header',
   data () {
@@ -290,7 +292,7 @@ export default {
       }
     },
     navigateToMarkers () {
-      this.navigateTo('bookmarks')
+      this.navigateTo('Bookmarks')
     },
     async logout () {
       try {

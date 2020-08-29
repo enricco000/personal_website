@@ -1,5 +1,5 @@
 const { Bookmark, Entry } = require('../models')
-const _ = require('lodash')
+// const _ = require('lodash')
 
 module.exports = {
   async index (req, res) {
@@ -25,12 +25,12 @@ module.exports = {
   },
   async post (req, res) {
     try {
-      const UserId = req.user.id
-      const { EntryId } = req.body.params
+      const userId = req.user.id
+      const { entryId } = req.body.params
       const exists = await Bookmark.findOne({
         where: {
-          EntryId: EntryId,
-          UserId: UserId
+          EntryId: entryId,
+          UserId: userId
         }
       })
       if (exists) {
@@ -39,10 +39,10 @@ module.exports = {
         })
       }
       const created = await Bookmark.create({
-        UserId: UserId,
-        EntryId: EntryId
+        UserId: userId,
+        EntryId: entryId
       })
-      res.send({ bookmark: created.EntryId })
+      res.send({ bookmarked: created.EntryId })
     } catch (err) {
       console.log(err)
       res.status(500).send({
@@ -52,12 +52,12 @@ module.exports = {
   },
   async delete (req, res) {
     try {
-      const UserId = req.user.id
-      const { EntryId } = req.query
+      const userId = req.user.id
+      const { entryId } = req.query
       const exists = await Bookmark.findOne({
         where: {
-          UserId: UserId,
-          EntryId: EntryId
+          UserId: userId,
+          EntryId: entryId
         }
       })
       if (!exists) {
@@ -67,8 +67,8 @@ module.exports = {
       }
       await Bookmark.destroy({
         where: {
-          UserId: UserId,
-          EntryId: EntryId
+          UserId: userId,
+          EntryId: entryId
         }
       })
       res.send({
@@ -82,23 +82,24 @@ module.exports = {
   },
   async indexer (req, res) {
     try {
-      const UserId = req.user.id
+      const userId = req.user.id
       const bookmarks = await Bookmark.findAll({
         where: {
-          UserId: UserId
+          UserId: userId
         },
         include: [
           {
             model: Entry
           }
+        ],
+        order: [
+          ['id', 'DESC']
         ]
       })
-        .map(bookmarks => bookmarks.toJSON())
-        .map(bookmarks => _.extend({
-          bookmarkId: bookmarks.id
-        }, bookmarks.Entry))
+      bookmarks.map(bookmark => bookmark.toJSON())
       res.send(bookmarks)
     } catch (err) {
+      console.log(err)
       res.status(500).send({
         error: 'An error occured while fetching bookmarks'
       })
