@@ -13,7 +13,7 @@
       shaped>
         <v-card-title
         class="text-h3">
-          New entry
+          Edit entry
         </v-card-title>
       </v-card>
     </v-container>
@@ -158,8 +158,8 @@
                   :disabled="!entry.title || !entry.content"
                   color="secondary"
                   class="white--text"
-                  @click="create()">
-                    Create
+                  @click="save()">
+                    Save edited entry
                   </v-btn>
               </v-row>
             </v-card-actions>
@@ -176,7 +176,7 @@ import CardSlot from '@/components/CardSlot'
 import EntriesService from '@/services/EntriesService'
 
 export default {
-  name: 'CreateContent',
+  name: 'EditEntry',
   data () {
     return {
       error: null,
@@ -190,8 +190,8 @@ export default {
       },
       snackbarRules: {
         snackbar: false,
-        text: 'Post successful!',
-        timeout: 2000
+        text: 'Edit successful!',
+        timeout: 1000
       }
     }
   },
@@ -199,9 +199,9 @@ export default {
     CardSlot
   },
   methods: {
-    async create () {
+    async save () {
       try {
-        await EntriesService.post(this.entry)
+        await EntriesService.put(this.entry)
         this.snackbarRules.snackbar = true
         this.error = null
         setTimeout(() => this.$router.push({ name: 'Home' }), 1250)
@@ -217,6 +217,11 @@ export default {
     mobileNav () {
       return this.$vuetify.breakpoint.smAndDown
     }
+  },
+  async mounted () {
+    const entryId = this.$store.state.route.params.entryId
+    this.entryId = entryId
+    this.entry = (await EntriesService.show(this.entryId)).data
   }
 }
 </script>

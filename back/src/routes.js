@@ -24,12 +24,16 @@ module.exports = (app) => {
     EntriesControllerPolicy.post,
     EntriesController.post)
 
-  app.get('/entries/:postId',
+  app.get('/entries/:entryId',
     EntriesController.show)
 
-  app.put('/entries/:postId',
+  app.put('/entries/:entryId',
     isAuthenticated,
     EntriesController.put)
+
+  app.delete('/entries/delete',
+    isAuthenticated,
+    EntriesController.delete)
 
   app.get('/bookmarks',
     isAuthenticated,

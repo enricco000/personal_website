@@ -1,11 +1,9 @@
 <template>
-  <v-row>
     <v-container
     fluid
-    class="pt-2 pb-2">
+    class="pt-2 pb-2 pl-0 pr-0">
 
       <v-card
-      class="pt-2 pb-2"
       shaped>
 
         <v-card-text>
@@ -21,7 +19,6 @@
       </v-card>
 
     </v-container>
-  </v-row>
 </template>
 
 <script>

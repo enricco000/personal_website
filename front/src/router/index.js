@@ -59,6 +59,15 @@ const routes = [
     }
   },
   {
+    path: '/entry/:entryId/edit',
+    name: 'EditEntry',
+    component: () => import('../views/EditEntry.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresAdmin: true
+    }
+  },
+  {
     path: '/entry/:entryId',
     name: 'Entry',
     component: () => import('../views/Entry.vue')

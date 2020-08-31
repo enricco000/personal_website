@@ -5,6 +5,7 @@
   <v-app-bar
   v-if="!$route.meta.hideNavigation"
   :app=true
+  elevation=5
   class="pb-5"
   color="primary">
 

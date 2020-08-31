@@ -3,7 +3,7 @@
   fluid>
 
   <v-container
-    class="pb-3 pl-0 pr-0 pt-2">
+    class="pt-2 pb-2 pl-0 pr-0">
       <v-card
       color="secondary"
       class="white--text pa-0"
@@ -16,8 +16,7 @@
       </v-card>
     </v-container>
 
-    <card-slot
-    class="pb-10">
+    <card-slot>
 
       <div slot="CardText">
         <v-form>
@@ -76,7 +75,7 @@
       slot="BottomCard">
         <v-row
         :justify="'end'"
-        class="mr-2 pb-2">
+        class="pr-5 pb-2">
           <v-btn
           :disabled="!enteredCredentials"
           @click="login()"

@@ -8,13 +8,13 @@
       </v-container>
 
       <v-container
-      class="pt-5 pb-16 pl-2 pr-2"
+      class="mt-5 mb-5 pl-2 pr-2"
       :style="mobileNav ? '' : 'max-width: 1080px;'">
         <router-view />
       </v-container>
 
       <v-container
-      class="pt-5">
+      class="pt-12">
         <page-footer />
       </v-container>
 

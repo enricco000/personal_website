@@ -1,15 +1,14 @@
 <template>
   <v-container
   fluid
-  class="pt-5 pb-5">
+  class="pt-2 pb-0">
 
-    <v-row
-    no-gutters>
+    <v-row>
       <v-col
       cols="12">
         <v-card
         color="secondary"
-        class="white--text pa-0"
+        class="white--text"
         elevation=8
         shaped>
           <v-card-title
@@ -173,7 +172,7 @@
       <v-container>
         <v-row
         class="justify-center">
-          <div class="text-center pt-3 pb-5">
+          <div class="text-center">
             <v-pagination
             :disabled="numEntries < 6"
             total-visible=6

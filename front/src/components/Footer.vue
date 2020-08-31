@@ -1,17 +1,19 @@
 <template>
   <v-container
-  class="pt-5"
-  v-if="!$route.meta.hideNavigation">
+  fluid
+  class="pt-16">
     <v-footer
-      :padless="true"
-      absolute
+    app
+    :padless=true
+    elevation=5
+    absolute
     >
       <v-card
         flat
         tile
         width="100%"
         color="primary"
-        class="text-center"
+        class="text-center pt-0"
       >
         <v-card-text>
           <v-btn

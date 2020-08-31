@@ -83,8 +83,8 @@ module.exports = {
   },
   async show (req, res) {
     try {
-      const post = await Entry.findByPk(req.params.postId) // find by primary key
-      res.send(post)
+      const entry = await Entry.findByPk(req.params.entryId) // find by primary key
+      res.send(entry)
     } catch (err) {
       res.status(500).send({
         error: 'An error has occured while fetching entry'
@@ -95,13 +95,40 @@ module.exports = {
     try {
       const entry = await Entry.update(req.body, {
         where: {
-          id: req.params.postId
+          id: req.params.entryId
         }
       })
       res.send(entry)
     } catch (error) {
       res.status(500).send({
         error: 'An error occured while updating entry'
+      })
+    }
+  },
+  async delete (req, res) {
+    try {
+      const { entryId } = req.query
+      const exists = await Entry.findOne({
+        where: {
+          Id: entryId
+        }
+      })
+      if (!exists) {
+        res.status(400).send({
+          error: 'This entry does not exist'
+        })
+      }
+      await Entry.destroy({
+        where: {
+          Id: entryId
+        }
+      })
+      res.send({
+        data: 'Entry destroyed'
+      })
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error has occured while deleting the entry'
       })
     }
   }

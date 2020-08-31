@@ -1,9 +1,10 @@
 <template>
   <v-container
-  fluid>
+  fluid
+  class="pb-4">
 
     <v-container
-    class="pb-3 pl-0 pr-0 pt-2">
+    class="pt-2 pb-2 pl-0 pr-0">
       <v-card
       color="secondary"
       class="white--text pa-0"
@@ -16,8 +17,7 @@
       </v-card>
     </v-container>
 
-    <card-slot
-    class="pb-10">
+    <card-slot>
 
       <div slot="CardText">
         <v-form>
@@ -99,10 +99,10 @@
       </div>
 
       <v-card-actions
+      class="pr-6 pb-4"
       slot="BottomCard">
           <v-row
-        :justify="'end'"
-        class="mr-2 pb-2">
+          :justify="'end'">
           <v-btn
           :disabled="!passwordsMatch || error !== null"
           @click="register()"

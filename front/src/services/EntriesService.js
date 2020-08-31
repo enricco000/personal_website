@@ -19,10 +19,15 @@ export default {
   post (entry) {
     return Api().post('/entries', entry)
   },
-  show (postId) {
-    return Api().get(`/entries/${postId}`)
+  show (entryId) {
+    return Api().get(`/entries/${entryId}`)
   },
   put (entry) {
     return Api().put(`/entries/${entry.id}`, entry)
+  },
+  delete (entryId) {
+    return Api().delete('entries/delete', {
+      params: entryId
+    })
   }
 }

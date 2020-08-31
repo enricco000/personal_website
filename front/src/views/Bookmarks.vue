@@ -17,7 +17,7 @@
                 <th class="text-left">Topics</th>
                 <th class="text-left">Summary</th>
                 <th class="text-left">Author</th>
-                <th class="text-left">Fecha</th>
+                <th class="text-left">Date</th>
               </tr>
             </thead>
             <tbody>
