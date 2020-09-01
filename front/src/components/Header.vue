@@ -266,7 +266,7 @@ export default {
       drawer: null,
       headerName: 'Name',
       headerLastName: 'Last Name',
-      searchBar: false,
+      searchBar: true,
       showTopLinks: true,
       topItems: [
         { title: 'Home', icon: 'mdi-home', showOnLogin: false, hideOnLogin: false, to: '/', show: true },
@@ -372,6 +372,9 @@ export default {
     } catch (error) {
       console.log('Please note that you can configure this URL in the config file')
     }
+  },
+  mounted () {
+    this.mobileNav ? this.searchBar = false : this.searchBar = true
   }
 }
 </script>

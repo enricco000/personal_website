@@ -10,6 +10,9 @@ module.exports = (app) => {
     AuthenticationControllerPolicy.register,
     AuthenticationController.register)
 
+  app.put('/verify',
+    AuthenticationController.verify)
+
   app.post('/login',
     AuthenticationController.login)
 

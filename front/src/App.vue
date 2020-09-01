@@ -13,22 +13,29 @@
         <router-view />
       </v-container>
 
-      <v-fab-transition>
-        <v-btn
-          style="transform-origin: center center 0px;"
-          v-scroll="onScroll"
-          v-show="showScroll"
-          fab
-          bottom
-          right
-          dark
-          fixed
-          color="tertiary"
-          @click="toTop"
-        >
-          <v-icon>keyboard_arrow_up</v-icon>
-        </v-btn>
-      </v-fab-transition>
+      <v-tooltip left>
+        <template v-slot:activator="{ on, attrs }">
+          <v-fab-transition>
+            <v-btn
+              style="transform-origin: center center 0px;"
+              v-scroll="onScroll"
+              v-show="showScroll"
+              fab
+              bottom
+              right
+              dark
+              fixed
+              color="tertiary"
+              v-bind="attrs"
+              v-on="on"
+              @click="toTop"
+            >
+              <v-icon>mdi-chevron-up</v-icon>
+            </v-btn>
+          </v-fab-transition>
+        </template>
+          <span>Scroll to top</span>
+      </v-tooltip>
 
       <v-container
       class="pt-12">

@@ -141,7 +141,7 @@ export default {
       },
       snackbarRules: {
         snackbar: false,
-        text: 'Succes!',
+        text: 'Success!',
         timeout: 1000
       }
     }
@@ -158,7 +158,7 @@ export default {
         this.$store.dispatch('setUser', response.data.user)
         this.snackbarRules.snackbar = true
         this.error = null
-        setTimeout(() => this.$router.push({ name: 'login' }), 1250)
+        setTimeout(() => this.$router.push({ name: 'Signin' }), 1250)
       } catch (error) {
         this.error = error.response.data.error
       }
