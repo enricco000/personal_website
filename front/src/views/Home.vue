@@ -1,7 +1,7 @@
 <template>
   <v-container
   fluid
-  class="pt-2 pb-0">
+  class="pt-2 pb-2">
 
     <v-row>
       <v-col

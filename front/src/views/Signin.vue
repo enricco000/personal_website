@@ -1,20 +1,23 @@
 <template>
   <v-container
-  fluid>
+  fluid
+  class="pt-2 pb-2">
 
-  <v-container
-    class="pt-2 pb-2 pl-0 pr-0">
-      <v-card
-      color="secondary"
-      class="white--text pa-0"
-      elevation=8
-      shaped>
-        <v-card-title
-        class="text-h3">
-          Sign in
-        </v-card-title>
-      </v-card>
-    </v-container>
+    <v-row>
+      <v-col
+      cols="12">
+         <v-card
+        color="secondary"
+        class="white--text pa-0"
+        elevation=8
+        shaped>
+          <v-card-title
+          class="text-h3">
+            Sign in
+          </v-card-title>
+        </v-card>
+      </v-col>
+    </v-row>
 
     <card-slot>
 
