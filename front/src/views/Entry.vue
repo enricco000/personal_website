@@ -120,9 +120,10 @@
     :class="mobileNav ? 'justify-start' : 'justify-center'">
 
     <v-col
-    class="text-left"
-    >
-      <markdown-it-vue class="md-body" :content="String(entry.content)" />
+    class="text-left">
+      <markdown-it-vue
+      class="md-body"
+      :content="String(entry.content)" />
     </v-col>
 
   </v-row>

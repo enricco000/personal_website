@@ -8,10 +8,27 @@
       </v-container>
 
       <v-container
-      class="mt-5 mb-5 pl-2 pr-2"
+      class="mt-5 mb-5 pl-2 pr-2 scroll-y"
       :style="mobileNav ? '' : 'max-width: 1080px;'">
         <router-view />
       </v-container>
+
+      <v-fab-transition>
+        <v-btn
+          style="transform-origin: center center 0px;"
+          v-scroll="onScroll"
+          v-show="showScroll"
+          fab
+          bottom
+          right
+          dark
+          fixed
+          color="tertiary"
+          @click="toTop"
+        >
+          <v-icon>keyboard_arrow_up</v-icon>
+        </v-btn>
+      </v-fab-transition>
 
       <v-container
       class="pt-12">
@@ -32,6 +49,11 @@ export default {
     PageHeader,
     PageFooter
   },
+  data () {
+    return {
+      showScroll: false
+    }
+  },
   created () {
     try {
       const config = require('./config/index.js')
@@ -43,6 +65,16 @@ export default {
   computed: {
     mobileNav () {
       return this.$vuetify.breakpoint.smAndDown
+    }
+  },
+  methods: {
+    onScroll (object) {
+      if (typeof window === 'undefined') return
+      const top = window.pageYOffset || object.target.scrollTop || 0
+      this.showScroll = top > 20
+    },
+    toTop () {
+      this.$vuetify.goTo(0)
     }
   }
 }

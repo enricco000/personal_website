@@ -18,20 +18,22 @@
 
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn
-              v-if="$store.state.isUserLoggedin && $store.state.isAdmin"
-              fab
-              color="tertiary"
-              bottom
-              dark
-              right
-              absolute
-              v-bind="attrs"
-              v-on="on"
-              @click="$router.push({name: 'CreateEntry', params: {topics: topic}})"
-              >
-                <v-icon>mdi-pen-plus</v-icon>
-              </v-btn>
+              <v-fab-transition>
+                <v-btn
+                v-if="$store.state.isUserLoggedin && $store.state.isAdmin"
+                fab
+                color="tertiary"
+                bottom
+                dark
+                right
+                absolute
+                v-bind="attrs"
+                v-on="on"
+                @click="$router.push({name: 'CreateEntry', params: {topics: topic}})"
+                >
+                  <v-icon>mdi-pen-plus</v-icon>
+                </v-btn>
+              </v-fab-transition>
             </template>
             <span>Write new entry</span>
           </v-tooltip>
