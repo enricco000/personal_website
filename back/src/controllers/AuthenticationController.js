@@ -44,7 +44,7 @@ module.exports = {
           created: date.toString()
         }
         const tokenMailVerification = jwt.sign(signData, config.authentication.jwtSecret, { expiresIn: '1d' })
-        const url = config.verificationEmail.baseURL + 'verify?verificationToken=' + tokenMailVerification
+        const url = config.verificationEmail.baseURL + '/verify?verificationToken=' + tokenMailVerification
         const transporter = nodemailer.createTransport({
           name: config.verificationEmail.domain,
           host: config.verificationEmail.domain,
@@ -60,7 +60,7 @@ module.exports = {
           from: `${config.verificationEmail.name} <${config.verificationEmail.user}>`, // sender address
           to: email, // list of receivers seperated by comma
           subject: 'Account Verification', // Subject line
-          text: 'Click on the link below to verify your account ' + url // plain text body
+          text: 'Click on the link to verify your account: ' + url // plain text body
         })
         const user = await User.create(req.body)
         res.send(user.toJSON())
