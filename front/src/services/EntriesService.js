@@ -9,10 +9,25 @@ export default {
       }
     })
   },
+  topicIndex (page, topic) {
+    return Api().get('/entries/topic', {
+      params: {
+        topic: topic,
+        page: page
+      }
+    })
+  },
   count (search) {
     return Api().get('/entries/count', {
       params: {
         search: search
+      }
+    })
+  },
+  topicCount (topic) {
+    return Api().get('/entries/count/topic', {
+      params: {
+        topic: topic
       }
     })
   },

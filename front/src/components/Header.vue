@@ -28,7 +28,7 @@
             v-on="on"
             to="/"
             >
-              <v-icon>mdi-pig-variant</v-icon>
+              <v-icon>mdi-home</v-icon>
             </v-btn>
           </template>
             <span>Home</span>
@@ -235,6 +235,7 @@
     </v-navigation-drawer>
 
     <v-snackbar
+    bottom
       v-model="snackbarRules.snackbar"
       :timeout="snackbarRules.timeout"
     >
@@ -268,7 +269,7 @@ export default {
       searchBar: false,
       showTopLinks: true,
       topItems: [
-        { title: 'Home', icon: 'mdi-pig-variant', showOnLogin: false, hideOnLogin: false, to: '/', show: true },
+        { title: 'Home', icon: 'mdi-home', showOnLogin: false, hideOnLogin: false, to: '/', show: true },
         // { title: 'Tienda', icon: 'mdi-storefront', showOnLogin: false, hideOnLogin: false, to: '/shop', show: true },
         { title: 'Sign up', icon: 'mdi-account-plus', showOnLogin: false, hideOnLogin: true, to: '/signup', show: true },
         { title: 'Sign in', icon: 'mdi-login', showOnLogin: false, hideOnLogin: true, to: '/signin', show: true }
@@ -281,7 +282,7 @@ export default {
       snackbarRules: {
         snackbar: false,
         text: '¡Adiós!',
-        timeout: 2000
+        timeout: 1000
       },
       search: null
     }
@@ -300,7 +301,7 @@ export default {
         this.drawer = false
         this.$store.dispatch('logout')
         this.snackbarRules.snackbar = true
-        setTimeout(() => this.navigateTo('Home'), 200)
+        setTimeout(() => this.navigateTo('Home'), 1250)
         this.topItems
           .filter(u => { return u.hideOnLogin === true })
           .map(u => { u.show = true })

@@ -14,7 +14,7 @@ module.exports = {
           limit: articlesPerPage,
           where: {
             [Op.or]: [
-              'title', 'author', 'content', 'summary'
+              'title', 'author', 'content', 'summary', 'topics'
             ].map(key => ({
               [key]: {
                 [Op.like]: `%${search}%`
@@ -43,6 +43,32 @@ module.exports = {
       })
     }
   },
+  async topicIndex (req, res) {
+    try {
+      let entries = null
+      const topic = req.query.topic
+      const page = req.query.page
+      const articlesPerPage = 6
+      entries = await Entry.findAll({
+        offset: (page - 1) * articlesPerPage,
+        limit: articlesPerPage,
+        where: {
+          topics: {
+            [Op.like]: `%${topic}%`
+          }
+        },
+        order: [
+          ['id', 'DESC'],
+          ['title', 'ASC']
+        ]
+      })
+      res.send(entries)
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error has occured while fetching entries'
+      })
+    }
+  },
   async count (req, res) {
     try {
       let numEntries = null
@@ -51,7 +77,7 @@ module.exports = {
         numEntries = await Entry.count({
           where: {
             [Op.or]: [
-              'title', 'author', 'content'
+              'title', 'author', 'content', 'topics'
             ].map(key => ({
               [key]: {
                 [Op.like]: `%${search}%`
@@ -63,6 +89,24 @@ module.exports = {
         numEntries = await Entry.count({
         })
       }
+      res.send({ numEntries: numEntries })
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error has occured while counting entries'
+      })
+    }
+  },
+  async topicCount (req, res) {
+    try {
+      let numEntries = null
+      const topic = req.query.topic
+      numEntries = await Entry.count({
+        where: {
+          topics: {
+            [Op.like]: `%${topic}%`
+          }
+        }
+      })
       res.send({ numEntries: numEntries })
     } catch (err) {
       res.status(500).send({

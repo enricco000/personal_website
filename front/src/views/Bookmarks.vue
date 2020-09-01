@@ -2,7 +2,24 @@
 
   <v-container
   fluid
-  class="pb-10">
+  class="pt-2 pb-2">
+
+    <v-row>
+      <v-col
+      cols="12">
+        <v-card
+        color="secondary"
+        class="white--text"
+        elevation=8
+        shaped>
+          <v-card-title
+          class="text-h3">
+            Bookmarks
+          </v-card-title>
+
+        </v-card>
+      </v-col>
+    </v-row>
 
     <card-slot
     v-if="$store.state.isUserLoggedin">

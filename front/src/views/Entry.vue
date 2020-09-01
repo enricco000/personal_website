@@ -4,21 +4,44 @@
 
     <v-row
     dense
-    justify="end"
-    v-if="$store.state.isUserLoggedin">
+    class="pb-4">
       <v-col
       cols="12">
+        <v-card
+        shaped
+        color="secondary">
           <v-container
           fluid
           class="pa-0">
             <v-row
             dense>
+
+            <v-col
+            v-if="!mobileNav">
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                    dark
+                    icon
+                    exact
+                    v-bind="attrs"
+                    v-on="on"
+                    :to="{name: 'Home'}"
+                    >
+                      <v-icon>mdi-home</v-icon>
+                    </v-btn>
+                  </template>
+                    <span>Home</span>
+                </v-tooltip>
+              </v-col>
+
               <v-col
               v-if="$store.state.isUserLoggedin && $store.state.isAdmin">
                 <v-tooltip bottom>
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                    color="secondary"
+                    dark
+                    icon
                     exact
                     v-bind="attrs"
                     v-on="on"
@@ -36,7 +59,8 @@
                 <v-tooltip bottom>
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                    color="secondary"
+                    icon
+                    dark
                     exact
                     v-bind="attrs"
                     v-on="on"
@@ -54,7 +78,8 @@
                 <v-tooltip bottom>
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                    color="secondary"
+                    dark
+                    icon
                     exact
                     v-bind="attrs"
                     v-on="on"
@@ -72,8 +97,8 @@
                 <v-tooltip bottom>
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                    color="secondary"
                     dark
+                    icon
                     exact
                     v-bind="attrs"
                     v-on="on"
@@ -87,6 +112,7 @@
               </v-col>
             </v-row>
           </v-container>
+        </v-card>
       </v-col>
     </v-row>
 

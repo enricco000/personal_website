@@ -16,16 +16,6 @@
             All entries
           </v-card-title>
 
-          <v-alert
-        type="error"
-        v-if="error"
-        elevation=6
-        dismissible
-        class="text-left"
-        >
-          {{ error }}
-        </v-alert>
-
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -38,7 +28,7 @@
               absolute
               v-bind="attrs"
               v-on="on"
-              to="/entry/create"
+              @click="$router.push({name: 'CreateEntry', params: {topics: null}})"
               >
                 <v-icon>mdi-pen-plus</v-icon>
               </v-btn>
@@ -50,21 +40,19 @@
       </v-col>
     </v-row>
 
+    <v-alert
+    v-if="error"
+    type="error"
+    elevation=6
+    dismissible
+    class="text-left"
+    >
+      {{ error }}
+    </v-alert>
+
     <v-row>
       <v-container
       fluid>
-
-        <v-row>
-          <v-alert
-          type="error"
-          v-if="error"
-          elevation=6
-          dismissible
-          class="text-left"
-          >
-            {{ error }}
-          </v-alert>
-        </v-row>
 
         <v-row
         dense>

@@ -219,8 +219,7 @@ export default {
     }
   },
   async mounted () {
-    const entryId = this.$store.state.route.params.entryId
-    this.entryId = entryId
+    this.entryId = this.$store.state.route.params.entryId
     this.entry = (await EntriesService.show(this.entryId)).data
   }
 }

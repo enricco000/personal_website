@@ -212,6 +212,7 @@ export default {
   },
   created () {
     this.entry.author = this.$store.state.user.username
+    this.entry.topics = this.$store.state.route.params.topics
   },
   computed: {
     mobileNav () {

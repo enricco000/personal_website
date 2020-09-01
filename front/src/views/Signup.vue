@@ -133,7 +133,7 @@ export default {
       reTypePassword: '',
       show1: false,
       show2: false,
-      error: null,
+      error: 'Error',
       rules: {
         required: value => !!value || 'Required',
         min: value => value.length >= 8 || 'Must be at least 8 alphanumeric characters',

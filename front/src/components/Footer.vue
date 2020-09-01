@@ -9,7 +9,6 @@
     absolute
     >
       <v-card
-        flat
         tile
         width="100%"
         color="primary"

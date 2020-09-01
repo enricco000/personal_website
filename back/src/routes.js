@@ -16,8 +16,14 @@ module.exports = (app) => {
   app.get('/entries',
     EntriesController.index)
 
+  app.get('/entries/topic',
+    EntriesController.topicIndex)
+
   app.get('/entries/count',
     EntriesController.count)
+
+  app.get('/entries/count/topic',
+    EntriesController.topicCount)
 
   app.post('/entries',
     isAuthenticated,
